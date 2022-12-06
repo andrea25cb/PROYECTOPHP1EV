@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script src="js/jquery-1.12.4-jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- <style type="text/css">
+<style type="text/css">
 	.login-form {
 		width: 340px;
     	margin: 20px auto;
@@ -31,7 +31,7 @@
         font-size: 15px;
         font-weight: bold;
     }
-</style> -->
+</style>
 </head>
 	<body>
 

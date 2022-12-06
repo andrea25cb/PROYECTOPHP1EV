@@ -15,23 +15,19 @@ include('layout/menuA.php');
 <div class="container">
         <div class="centrar">
 <?php
-    require_once("../modelo/modTarea.php"); 
+    include("../modelo/modTarea.php"); 
   
     $id=$_GET['id']; 
 
     echo '<h1>MODIFICANDO LA TAREA '.$id.' </h1>';
     /**Para coger los valores y mostrarlos en los inputs: */
-    $cc = Database::getInstance(); 
-    $sql="SELECT * FROM tarea WHERE id = $id"; 
-    $query= $cc->db->prepare($sql); 
-    $query->execute();
-    
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
-if ($query->rowCount() > 0) {
-    foreach ($results as $registro) {
+    $tarea=new Tarea();
+    $tarea->valores($id);
+    if ($query->rowCount() > 0) {
+        foreach ($results as $registro) {
 ?>
 
-    <form action="errores_modificar.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
+    <form action="../vista/errores_modificar.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
          <!--NIF  --> <br>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">NIF</span>
@@ -178,8 +174,8 @@ if ($query->rowCount() > 0) {
         <p>Operario encargado:
     
 <?php
-$tarea=new Tarea();
-    $tarea->listaOperarios();
+        $tarea = new Tarea();
+        $tarea->listaOperarios();
 ?>
 
 <p>Fecha realización:
@@ -204,6 +200,7 @@ $tarea=new Tarea();
 <?php
     }
 }
+
 
 ?>
    </div>

@@ -1,7 +1,12 @@
 <?php
 require_once("../modelo/modTarea.php"); 
-//$id=$_GET['id'];
-if ($_POST) {    
+include('../vista/modificar.php');
+include('filtrarErrores.php');
+if ($_POST) {
+
+    $errores = [];
+    filtrarErrores($errores);
+
     $id = filter_input(INPUT_POST, 'id');
     $nif = filter_input(INPUT_POST, 'nif');
     $nombre = filter_input(INPUT_POST, 'nombre');
@@ -26,4 +31,3 @@ $tarea=new Tarea();
 $tarea->actualizar($id,$nif,$nombre,$apellidos,$tlf,$descripcion,$correo,$direccion,$poblacion,$cp,$provincia,
 $estadoTarea,$fechaC,$operario,$fechaR,$anotA,$anotP,$foto,$fichero);
 }
-

@@ -13,6 +13,25 @@ class Tarea  {
         $results = $query->fetchAll(PDO::FETCH_OBJ);
         if ($query->rowCount() > 0) {
             foreach ($results as $registro) {
+                $registro->id;
+                $registro->nif;
+                $registro->nombre;
+                $registro->apellidos;
+                $registro->tlf;
+                $registro->descripcion;
+                $registro->correo;
+                $registro->direccion;
+                $registro->poblacion;
+                $registro->cp;
+                $registro->provincia;
+                $registro->estadoTarea;
+                $registro->fechaC;
+                $registro->operario;
+                $registro->fechaR;
+                $registro->anotA;
+                $registro->anotP;
+                $registro->foto;
+                $registro->fichero;
             }
         }
     }

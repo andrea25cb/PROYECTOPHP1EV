@@ -3,11 +3,11 @@ include(__DIR__ . '/database.php');
 session_start();
 if(isset($_SESSION["admin_login"]))	//Condicion admin
 {
-	header("location: admin/admin_portada.php");	
+	header("location: vista/admin_portada.php");	
 }
 if(isset($_SESSION["operario_login"]))	//Condicion operario
 {
-	header("location: operario/operario_portada.php"); 
+	header("location: vista/operario_portada.php"); 
 }
 
 if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
@@ -55,13 +55,13 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 							case "admin":
 								$_SESSION["admin_login"]=$correo;			
 								$loginMsg="Admin: Inicio sesión con éxito";	
-								header("refresh:3;admin/admin_portada.php");	
+								header("refresh:3;vista/admin_portada.php");	
 								break;
 								
 							case "operario";
 								$_SESSION["operario_login"]=$correo;				
 								$loginMsg="Operario: Inicio sesión con éxito";		
-								header("refresh:3;operario/operario_portada.php");	
+								header("refresh:3;vista/operario_portada.php");	
 								break;
 								
 							default:
