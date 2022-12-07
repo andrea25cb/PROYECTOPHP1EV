@@ -3,37 +3,25 @@
 include(__DIR__ . '/database.php');
 class Tarea  { 
 
-         /**Para coger los valores y mostrarlos en los inputs: */
-    function valores($id){
+    public function paginacion(){
         $cc = Database::getInstance();
-        $sql = "SELECT * FROM tarea WHERE id = $id";
-        $query = $cc->db->prepare($sql);
-        $query->execute();
+        $pagina=isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
-        if ($query->rowCount() > 0) {
-            foreach ($results as $registro) {
-                $registro->id;
-                $registro->nif;
-                $registro->nombre;
-                $registro->apellidos;
-                $registro->tlf;
-                $registro->descripcion;
-                $registro->correo;
-                $registro->direccion;
-                $registro->poblacion;
-                $registro->cp;
-                $registro->provincia;
-                $registro->estadoTarea;
-                $registro->fechaC;
-                $registro->operario;
-                $registro->fechaR;
-                $registro->anotA;
-                $registro->anotP;
-                $registro->foto;
-                $registro->fichero;
-            }
-        }
+        $regpagina=5;
+    
+        $inicio=($pagina>1) ? (($pagina * $regpagina)- $regpagina):0;
+    
+        $registros = $cc->db->prepare("
+            SELECT SQL_CALC_FOUND_ROWS * FROM tarea LIMIT $inicio,$regpagina
+            ");
+    
+        $registros->execute();
+        $registros=$registros->fetchAll();
+    
+        $totalregistros=$cc->db->query("SELECT FOUND_ROWS() as total");
+        $totalregistros=$totalregistros->fetch()['total'];
+    
+        $numeropaginas=ceil($totalregistros/$regpagina);
     }
 
     /**Buscar tareas a través de un input buscador */
@@ -104,11 +92,11 @@ class Tarea  {
         <td>" . $registro->anotP . "</td>
         <td>
         <a href='../controlador/modificarTarea.php?id=" . $registro->id . "'>
-        <button type='button'>MODIFICAR</button></a>
+        <button class='btn btn-primary' type='button'>MODIFICAR</button></a>
         <a href='confirmar.php?id=" . $registro->id . "'>
-        <button type='button'>BORRAR</button></a>
+        <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
         <a href='detalles.php?id=" . $registro->id . "'>
-        <button type='button'>DETALLES</button></a></td>      
+        <button class='btn btn-primary' type='button'>DETALLES</button></a></td>      
            </tr>";
           }
             }
@@ -136,9 +124,9 @@ class Tarea  {
         <td>" . $registro->anotP . "</td>
         <td>
         <a href='../vista/errores_modificar.php?id=<?= $registro->id ?>'>
-            <button type='button'>COMPLETAR TAREA</button></a>
+            <button class='btn btn-primary' type='button'>COMPLETAR TAREA</button></a>
             <a href='../modelo/verdetalles.php?id=<?= $registro->id ?>'>
-            <button type='button'>VER DETALLES</button></a></td>    
+            <button class='btn btn-primary' type='button'>VER DETALLES</button></a></td>    
            </tr>";
           }
             }
@@ -166,11 +154,11 @@ class Tarea  {
         <td>" . $registro->anotP . "</td>
         <td>
         <a href='errores_modificar.php?id=" . $registro->id . "''>
-        <button type='button'>MODIFICAR</button></a>
+        <button class='btn btn-primary' type='button'>MODIFICAR</button></a>
         <a href='confirmar.php?id=" . $registro->id . "'>
-        <button type='button'>BORRAR</button></a>
+        <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
         <a href='detalles.php?id=" . $registro->id . "''>
-        <button type='button'>DETALLES</button></a></td>      
+        <button class='btn btn-primary' type='button'>DETALLES</button></a></td>      
            </tr>";
           }
               
@@ -198,9 +186,9 @@ class Tarea  {
         <td>" . $registro->anotP . "</td>
         <td>
         <a href='../vista/errores_modificar.php?id=' . $registro->id . '>
-            <button type='button'>COMPLETAR TAREA</button></a>
+            <button class='btn btn-primary' type='button'>COMPLETAR TAREA</button></a>
             <a href='../modelo/verdetalles.php?id=' . $registro->id . '>
-            <button type='button'>VER DETALLES</button></a></td>      
+            <button class='btn btn-primary' type='button'>VER DETALLES</button></a></td>      
            </tr>";
           }
                 include('pie.php');
@@ -298,7 +286,7 @@ class Tarea  {
 
             //$sql->bindParam(':id',$reg,PDO::PARAM_INT);
              echo '<h1>Se ha actualizado</h1>';
-             echo '<a href="../vista/listarTareas.php"><button type="button">VOLVER</button></a>';
+             echo '<a href="../vista/listarTareas.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
              return $sql->execute($reg);
                   
     } 
@@ -312,7 +300,7 @@ class Tarea  {
         include('../vista/menuA.php'); 
         $results = $query -> fetch(PDO::FETCH_OBJ); 
         echo '<h1>Se ha procedido a borrar la tarea '.$id.' </h1>';
-        echo '<a href="../vista/listarTareas.php"><button type="button">VOLVER</button></a>';
+        echo '<a href="../vista/listarTareas.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
     }  
 
     public function listaOperarios(){

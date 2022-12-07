@@ -15,7 +15,6 @@ include('layout/menuA.php');
 <div class="container">
         <div class="centrar">
 <?php
-
   
     $id=$_GET['id']; 
 
@@ -144,23 +143,23 @@ if ($registro) {
             <?= VerError('cp') ?>
         </div>
 
-      <p class="form-check">
+        <p class="form-check">
         <p>ESTADO TAREA:
-       <input class="form-check-input" type="radio" name="estadoTarea" value="<?= $registro->estadoTarea ?>" 
-        <?php if (filter_input(INPUT_POST, 'estadoTarea') == 'B')
+       <input class="form-check-input" type="radio" name="estadoTarea" value="Esperando a ser aprobada" 
+        <?php if (filter_input(INPUT_POST,'estadoTarea')=='Esperando a ser aprobada')
             echo 'checked';
         ?>> Esperando a ser aprobada
 
-       <input class="form-check-input" type="radio" name="estadoTarea" value="<?= $registro->estadoTarea ?>" checked
-        <?php if (filter_input(INPUT_POST, 'estadoTarea') == 'R')
+       <input class="form-check-input" type="radio" name="estadoTarea" value="Realizada" checked
+        <?php if (filter_input(INPUT_POST,'estadoTarea')=='Realizada')
             echo 'checked';
         ?>> Realizada
 
-       <input class="form-check-input" type="radio" name="estadoTarea" value="<?= $registro->estadoTarea ?>"
-        <?php if (filter_input(INPUT_POST, 'estadoTarea') == 'C')
+       <input class="form-check-input" type="radio" name="estadoTarea" value="Cancelada"
+        <?php if (filter_input(INPUT_POST,'estadoTarea')=='Cancelada')
             echo 'checked';
         ?>> Cancelada
-<?= VerError('estadoTarea') ?>
+        <?=VerError('estadoTarea')?>
     </p>
 
    <p>Fecha creación:

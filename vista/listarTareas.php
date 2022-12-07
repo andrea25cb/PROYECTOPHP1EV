@@ -5,9 +5,9 @@
  * que contiene las tareas a mostrar
  */
 ?>
-@extends('_template')
+<!-- @extends('_template')
 
-@section('cuerpo')
+@section('cuerpo') -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +28,7 @@ include('../controlador/buscarTareas.php');
 
 <br>
 
-<div class="row"><div class="col-lg-6"></div>
+<!-- <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'>
@@ -37,13 +37,13 @@ include('../controlador/buscarTareas.php');
       </span>
     </div>
   </div>
-</div>
+</div> -->
 
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>
-<a style="float:right ;" id="insertar" href="errores.php"><input type="button" name="insertar" value="añadir nueva tarea"></a>
-<p>
+<a style="float:right ;" id="insertar" href="errores.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nueva tarea"></a>
+<br><br><p>
     <div class="col-12 col-md-12"> 
       <!-- Contenido -->
       <table class="table table-bordered table-striped">
@@ -61,15 +61,15 @@ include('../controlador/buscarTareas.php');
 <tbody>
       <?php
       include('../controlador/listar.php');
-   
+      include('../controlador/paginacion.php');
+      
 ?> 
 </table>
 </tbody>
-<?php echo $per_page_html; ?>
 </div>
 </div>
 </div>
 <?php include('layout/pie.php'); ?>
 </body>
 </html>
-@endsection
+<!-- @endsection -->

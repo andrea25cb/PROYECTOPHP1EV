@@ -23,7 +23,7 @@ class Usuario
 
         echo "<h1>USUARIO CREADO CON EXITO</h1>";
         echo " <a href='../vista/listarUsuarios.php'>
-        <button type='button'>VOLVER</button></a>";
+        <button class='btn btn-primary' type='button'>VOLVER</button></a>";
         include('../vista/layout/pie.php');
     }
 
@@ -43,9 +43,9 @@ class Usuario
             <td>*********</td>
             <td>
             <a href='confirmarDespedir.php?correo=" . $registro->correo . "'>
-            <button type='button'>BORRAR</button></a>
+            <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
             <a href='../vista/editarUsuario.php?correo=" . $registro->correo . "'>
-            <button type='button'>EDITAR</button></a>    
+            <button class='btn btn-primary' type='button'>EDITAR</button></a>    
             
         </tr>";
             }
@@ -78,7 +78,7 @@ class Usuario
         include('../vista/layout/menuA.php'); 
         $results = $sql->fetchAll(PDO::FETCH_OBJ);
         echo '<h1>Se ha procedido a despedir el operario ' . $correo . ' </h1>';
-        echo '<a href="../vista/listarUsuarios.php"><button type="button">VOLVER</button></a>';
+        echo '<a href="../vista/listarUsuarios.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
 
     }
 }

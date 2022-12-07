@@ -10,6 +10,6 @@
 <tr>
     <td><a href='../vista/listarTareasOperario.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> MENU</button></a></td>
     <td><a href='tareasPendientesOper.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> TAREAS PENDIENTES</button></a></td>
-    <td><a href="../cerrar_sesion.php"><button class="btn btn-danger text-left"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> CERRAR SESION</button></a></td>
+    <td><a href="../cerrar_sesion.php"><button class="btn btn-danger text-left"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>X CERRAR SESION</button></a></td>
 </tr>    
 </table>
