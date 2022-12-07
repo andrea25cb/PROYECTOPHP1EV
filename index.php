@@ -47,34 +47,8 @@
 <?php
 include('modelo/login.php');
 include('vista/layout/encabezado.php');
+include('controlador/errorLogin.php')
 ?>
-
-	<div class="wrapper">
-	<div class="container">
-		<div class="col-lg-12">
-		
-		<?php
-		if(isset($errorMsg))
-		{
-			foreach($errorMsg as $error)
-			{
-			?>
-				<div class="alert alert-danger">
-					<strong><?php echo $error; ?></strong>
-				</div>
-            <?php
-			}
-		}
-		if(isset($loginMsg))
-		{
-		?>
-			<div class="alert alert-success">
-				<strong>ÉXITO ! <?php echo $loginMsg; ?></strong>
-			</div>
-        <?php
-		}
-		?> 
-
 
 <div class="login-form">
 <center><h2>Iniciar sesión</h2></center>
@@ -118,5 +92,5 @@ include('vista/layout/encabezado.php');
     <?php
 include('vista/layout/pie.php'); 
 ?>						
-	</body>
+</body>
 </html>

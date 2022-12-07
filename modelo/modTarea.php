@@ -11,9 +11,7 @@ class Tarea  {
     
         $inicio=($pagina>1) ? (($pagina * $regpagina)- $regpagina):0;
     
-        $registros = $cc->db->prepare("
-            SELECT SQL_CALC_FOUND_ROWS * FROM tarea LIMIT $inicio,$regpagina
-            ");
+        $registros = $cc->db->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM tarea LIMIT $inicio,$regpagina");
     
         $registros->execute();
         $registros=$registros->fetchAll();
@@ -196,57 +194,22 @@ class Tarea  {
         }
 
     /*insertar tarea */
-    public function insertar($nif,$nombre,$apellidos,$tlf,$descripcion,$correo,$direccion,$poblacion,$cp,$provincia,
-    $estadoTarea,$fechaC,$operario,$fechaR,$anotA,$anotP,$foto,$fichero) {         
+    public function insertar($reg) {         
         $cc = Database::getInstance(); 
         $sql="INSERT INTO tarea(nif,nombre,apellidos,tlf,descripcion,correo,direccion,poblacion,cp,provincia,estadoTarea,
-        fechaC,operario,fechaR,anotA,anotP,foto,fichero)
-         VALUES(:nif,:nombre,:apellidos,:tlf,:descripcion,:correo,:direccion,:poblacion,:cp,:provincia,:estadoTarea,
-         :fechaC,:operario,:fechaR,:anotA,:anotP,:foto,:fichero)";
+        fechaC,operario,fechaR,anotA,anotP,foto,fichero) VALUES(:nif,:nombre,:apellidos,:tlf,:descripcion,:correo,:direccion,:poblacion,:cp,:provincia,:estadoTarea,:fechaC,:operario,:fechaR,:anotA,:anotP,:foto,:fichero)";
         $sql = $cc->db->prepare($sql);
     
-            $sql->bindParam(':nif',$nif,PDO::PARAM_STR);
-            $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
-            $sql->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-            $sql->bindParam(':tlf',$tlf,PDO::PARAM_INT);
-            $sql->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
-            $sql->bindParam(':correo',$correo,PDO::PARAM_STR, 100);
-            $sql->bindParam(':direccion',$direccion,PDO::PARAM_STR, 200);
-            $sql->bindParam(':poblacion',$poblacion,PDO::PARAM_STR);
-            $sql->bindParam(':cp',$cp,PDO::PARAM_INT);
-            $sql->bindParam(':provincia',$provincia,PDO::PARAM_STR);
-            $sql->bindParam(':estadoTarea',$estadoTarea,PDO::PARAM_STR, 25);
-            $sql->bindParam(':fechaC',$fechaC,PDO::PARAM_STR, 25);
-            $sql->bindParam(':operario',$operario,PDO::PARAM_STR);
-            $sql->bindParam(':fechaR',$fechaR,PDO::PARAM_STR);
-            $sql->bindParam(':anotA',$anotA,PDO::PARAM_STR);
-            $sql->bindParam(':anotP',$anotP,PDO::PARAM_STR, 25);
-            $sql->bindParam(':foto',$foto,PDO::PARAM_STR);
-            $sql->bindParam(':fichero',$fichero,PDO::PARAM_STR);
-                
-            $sql->execute();
-
-            $lastInsertId = $cc->db->lastInsertId();
-            echo "<h1>TAREA INSERTADA</h1>";
+        echo "<h1>TAREA INSERTADA</h1>";
+        return $sql->execute($reg);
     } 
-
-    /*Paginacion*/
-    // public static function getAll($page = 1, $qty = 5){
-    //     $cc = Database::getInstance(); 
-    //     $sql = "SELECT * from tarea LIMIT ? OFFSET ?";
-    //     if($page <= 0) $page = 1;  
-    //     $query= $cc->db->prepare($sql, array($qty, $qty * ($page-1)));
-    //     $query->execute();
-      
-    //     return $query->fetchAll();
-    //   }
 
     /**Ver detalles de una tarea concreta*/
     public function verDetalles($id) { 
-    $cc = Database::getInstance(); 
-    $sql = "SELECT * FROM tarea WHERE id = $id";        
-    $query= $cc->db->prepare($sql); 
-    $query->execute();
+        $cc = Database::getInstance(); 
+        $sql = "SELECT * FROM tarea WHERE id = $id";        
+        $query= $cc->db->prepare($sql); 
+        $query->execute();
     
         $results = $query -> fetchAll(PDO::FETCH_OBJ); 
 
@@ -296,12 +259,11 @@ class Tarea  {
         $sql = "DELETE FROM tarea WHERE id = $id";        
         $query= $cc->db->prepare($sql); 
         $query->execute();
-        include('../vista/encabezado.php');
-        include('../vista/menuA.php'); 
+        include('../vista/layout/encabezado.php');
+        include('../vista/layout/menuA.php'); 
         $results = $query -> fetch(PDO::FETCH_OBJ); 
         echo '<h1>Se ha procedido a borrar la tarea '.$id.' </h1>';
-        echo '<a href="../vista/listarTareas.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
-    }  
+        }  
 
     public function listaOperarios(){
     echo '<select name="operario"><option></option>';

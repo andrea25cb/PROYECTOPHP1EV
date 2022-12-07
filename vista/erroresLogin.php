@@ -12,8 +12,6 @@
 <?php
 $errores=[];
 
- 
-
 function VerError($campo) {
     global $errores;
     if (isset($errores[$campo])) {

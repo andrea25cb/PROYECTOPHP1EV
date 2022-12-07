@@ -53,6 +53,15 @@ class Usuario
         }
     }
 
+    // public function listarNombreUsuarios()
+    // {
+    //     $cc = Database::getInstance();
+    //     $sql = "SELECT nombre FROM usuario";
+    //     $query = $cc->db->prepare($sql);
+    //     $query->execute();
+
+    // }
+
     
  /**Actualizar datos de un usuario concreta*/
     public function editarUsuario($nombre,$correo,$contra) 

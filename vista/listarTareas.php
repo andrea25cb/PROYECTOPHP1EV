@@ -17,12 +17,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    </head>
+    
+      </head>
     <body>
     <?php 
 include('layout/encabezado.php');
 include('layout/menuA.php');
-include('../controlador/buscarTareas.php');
+ include('../controlador/buscarTareas.php');
     /**BUSCADOR DE TAREAS: */
 ?>
 
@@ -31,7 +32,7 @@ include('../controlador/buscarTareas.php');
 <!-- <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'>
+      <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php //echo $search_keyword; ?>" id='keyword' maxlength='25'>
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
       </span>
@@ -42,7 +43,7 @@ include('../controlador/buscarTareas.php');
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>
-<a style="float:right ;" id="insertar" href="errores.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nueva tarea"></a>
+<a style="float:right ;" href="../controlador/insertarTarea.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nueva tarea"></a>
 <br><br><p>
     <div class="col-12 col-md-12"> 
       <!-- Contenido -->
@@ -61,7 +62,7 @@ include('../controlador/buscarTareas.php');
 <tbody>
       <?php
       include('../controlador/listar.php');
-      include('../controlador/paginacion.php');
+      //include('../controlador/paginacion.php');
       
 ?> 
 </table>

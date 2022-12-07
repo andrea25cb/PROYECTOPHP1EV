@@ -16,7 +16,7 @@ if (!$_POST) {
     include('../vista/modificar.php');
 }
 else {
-    // die('Estoy en post');
+    
     $errores = filtrarErrores();
     
  if ($errores){

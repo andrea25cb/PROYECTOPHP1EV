@@ -170,10 +170,14 @@ if ($registro) {
 </textarea><?= VerError('anotA') ?>
         <p>Operario encargado:
     
-<?php
-$tarea=new Tarea();
-    $tarea->listaOperarios();
-?>
+        <select name="operario" value="<?= $registro->operario ?>>
+    <?php foreach ($operarios as $value => $desc): ?>
+        <option value="<?= $registro->operario ?>"
+        <?php if (filter_input(INPUT_POST, 'opcion') == $operarios)
+                echo 'selected'; ?>><?= $desc ?>
+        </option>
+    <?php endforeach; ?>
+</select>
 
 <p>Fecha realización:
         <input type="date" name="fechaR" value="<?= $registro->fechaR ?>"></p> 
@@ -196,7 +200,6 @@ $tarea=new Tarea();
 </form>
 <?php
     }
-
 ?>
    </div>
     </div>

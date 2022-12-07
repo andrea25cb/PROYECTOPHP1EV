@@ -7,7 +7,8 @@
   <title>INSERTAR TAREA</title>
   <link href="estilos.css" rel="stylesheet" >
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  </head>
+  
+</head>
 <body>
 <?php
 include('../vista/layout/encabezado.php');
@@ -15,7 +16,7 @@ include('../vista/layout/menuA.php');
 ?>
  <div class="container">
         <div class="centrar">
-   <form action="errores.php" method="POST" enctype="multipart/form-data">
+   <form action="../controlador/insertarTarea.php" method="POST" enctype="multipart/form-data">
     <br>
         <!--NIF  -->
         <div class="input-group mb-3">
@@ -168,11 +169,21 @@ $provincias = [
         <textarea class="form-control" name="anotA" value="<?=isset($_POST['anotA']) ? $_POST['anotA']: ''?>"> texto que se desee incluir para explicar el trabajo a realizar antes de comenzarlo.
 </textarea>
         <p>Operario encargado:
+           
 <?php
-include('../modelo/modTarea.php');
-$tarea=new Tarea();
-    $tarea->listaOperarios();
-?>
+$operarios = [];
+
+
+if ($registro) { ?>
+    <select name="operario" value="<?=isset($_POST['operario']) ? $_POST['operario']: ''?>">
+    <?php foreach ($operarios as $value => $desc): ?>
+        <option value="<?= $registro->nombre ?>"
+        <?php if (filter_input(INPUT_POST, 'opcion') == $operarios)
+                echo 'selected'; ?>><?= $desc ?>
+        </option>
+    <?php endforeach; ?>
+</select>
+   <?php } ?>
 
 <p>Fecha realización:
         <input type="date" name="fechaR" value="<?=isset($_POST['fechaR']) ? $_POST['fechaR']: ''?>"> <?=VerError('fechaR')?></p> 
