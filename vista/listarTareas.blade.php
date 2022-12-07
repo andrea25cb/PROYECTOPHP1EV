@@ -1,3 +1,13 @@
+<?php
+/**
+ * VISTA QUE MUESTA LA LISTA DE TAREAS.
+ * El controlador será el que nos proporcine en la variable $tareas
+ * que contiene las tareas a mostrar
+ */
+?>
+@extends('_template')
+
+@section('cuerpo')
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,8 +22,7 @@
     <?php 
 include('layout/encabezado.php');
 include('layout/menuA.php');
-
-    include('../controlador/buscarTareas.php');
+include('../controlador/buscarTareas.php');
     /**BUSCADOR DE TAREAS: */
 ?>
 
@@ -56,9 +65,11 @@ include('layout/menuA.php');
 ?> 
 </table>
 </tbody>
+<?php echo $per_page_html; ?>
 </div>
 </div>
 </div>
 <?php include('layout/pie.php'); ?>
 </body>
 </html>
+@endsection

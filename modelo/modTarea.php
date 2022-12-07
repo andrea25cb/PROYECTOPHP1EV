@@ -36,13 +36,6 @@ class Tarea  {
         }
     }
 
-    function verfecha($vfecha)
-{
-    $fch=explode("-",$vfecha);
-    $tfecha=$fch[2]."-".$fch[1]."-".$fch[0];
-    return $tfecha;
-}
-
     /**Buscar tareas a través de un input buscador */
     public function buscarTareas($keyword){
         $cc = Database::getInstance();
