@@ -35,6 +35,60 @@ class Tarea  {
             }
         }
     }
+
+    function verfecha($vfecha)
+{
+    $fch=explode("-",$vfecha);
+    $tfecha=$fch[2]."-".$fch[1]."-".$fch[0];
+    return $tfecha;
+}
+
+    /**Buscar tareas a través de un input buscador */
+    public function buscarTareas($keyword){
+        $cc = Database::getInstance();
+        $search_keyword = '';
+	    if(!empty($_POST['search']['keyword'])) {
+		$search_keyword = $_POST['search']['keyword'];
+	}
+        $sql = 'SELECT * FROM tarea WHERE id LIKE :keyword OR nif LIKE :keyword OR nombre LIKE :keyword OR apellidos LIKE :keyword OR tlf LIKE :keyword
+        OR descripcion LIKE :keyword OR correo LIKE :keyword OR direccion LIKE :keyword OR poblacion OR provincia LIKE :keyword OR estadoTarea LIKE :keyword
+        OR fechaC LIKE :keyword OR anotA LIKE :keyword OR anotP LIKE :keyword ORDER BY id DESC ';
+    
+        /* Pagination Code starts */
+        $per_page_html = '';
+        $page = 1;
+        $start=0;
+        if(!empty($_POST["page"])) {
+            $page = $_POST["page"];
+            $start=($page-1) * NRO_REGISTROS;
+        }
+        $limit=" limit " . $start . "," . NRO_REGISTROS;
+        $pagination_statement = $cc->db->prepare($sql);
+        $pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
+        $pagination_statement->execute();
+
+        $row_count = $pagination_statement->rowCount();
+        if(!empty($row_count)){
+            $per_page_html .= "<div style='text-align:center;margin:20px 0px;'>";
+            $page_count=ceil($row_count/NRO_REGISTROS);
+            if($page_count>1) {
+                for($i=1;$i<=$page_count;$i++){
+                    if($i==$page){
+                        $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page current" />';
+                    } else {
+                        $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page" />';
+                    }
+                }
+            }
+            $per_page_html .= "</div>";
+	}
+	
+	$query = $sql.$limit;
+	$pdo_statement = $cc->db->prepare($query);
+	$pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
+	$pdo_statement->execute();
+	$resultados = $pdo_statement->fetchAll();
+    }
         /**Listar todas las tareas*/
         public function listar(){
             $cc = Database::getInstance();

@@ -11,16 +11,14 @@
     <body>
     <?php 
 include('layout/encabezado.php');
-include('layout/menuA.php'); 
+include('layout/menuA.php');
 
-$search_keyword = '';
-	if(!empty($_POST['search']['keyword'])) {
-		$search_keyword = $_POST['search']['keyword'];
-	}
+    include('../controlador/buscarTareas.php');
+    /**BUSCADOR DE TAREAS: */
 ?>
 
 <br>
-/**BUSCADOR DE TAREAS: */
+
 <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
@@ -31,6 +29,7 @@ $search_keyword = '';
     </div>
   </div>
 </div>
+
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>

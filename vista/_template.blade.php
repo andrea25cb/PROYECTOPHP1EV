@@ -31,7 +31,7 @@ Igualmente nuestra aplicación podría tener tantos layouts como deseasemos
         @yield('cuerpo')
     </main>
     <footer style="background: #ccffcc; clear: both;">
-        Pie de página
+        Andrea Cordón Barrionuevo
     </footer>
 </body>
 </html>
