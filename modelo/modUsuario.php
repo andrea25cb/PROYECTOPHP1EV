@@ -54,11 +54,11 @@ class Usuario
     }
 
     
- /**Actualizar datos de una tarea concreta*/
+ /**Actualizar datos de un usuario concreta*/
     public function editarUsuario($nombre,$correo,$contra) 
     {                 
         $cc = Database::getInstance(); 
-        $sql = "UPDATE tarea SET nombre=:nombre, correo=:correo, contra=:contra WHERE correo=:correo"; 
+        $sql = "UPDATE usuario SET nombre=:nombre, correo=:correo, contra=:contra WHERE correo=:correo"; 
         $sql = $cc->db->prepare($sql);
         $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
         $sql->bindParam(':correo',$correo,PDO::PARAM_STR);

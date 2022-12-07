@@ -9,3 +9,8 @@ if ($_POST) {
 $usuario=new Usuario();
 $usuario->editarUsuario($nombre,$correo,$contra);
 }
+include('../vista/layout/encabezado.php');
+include('../vista/layout/menuA.php');
+?>
+
+<h1>USUARIO EDITADO</h1>

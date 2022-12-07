@@ -18,7 +18,9 @@ $search_keyword = '';
 		$search_keyword = $_POST['search']['keyword'];
 	}
 ?>
+
 <br>
+/**BUSCADOR DE TAREAS: */
 <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
@@ -26,9 +28,9 @@ $search_keyword = '';
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
       </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+    </div>
+  </div>
+</div>
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>

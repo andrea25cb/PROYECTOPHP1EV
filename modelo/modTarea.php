@@ -56,7 +56,7 @@ class Tarea  {
         <td>" . $registro->anotA . "</td>
         <td>" . $registro->anotP . "</td>
         <td>
-        <a href='errores_modificar.php?id=" . $registro->id . "'>
+        <a href='../controlador/modificarTarea.php?id=" . $registro->id . "'>
         <button type='button'>MODIFICAR</button></a>
         <a href='confirmar.php?id=" . $registro->id . "'>
         <button type='button'>BORRAR</button></a>
@@ -242,37 +242,17 @@ class Tarea  {
 }
 
  /**Actualizar datos de una tarea concreta*/
-    public function actualizar($id,$nif,$nombre,$apellidos,$tlf,$descripcion,$correo,$direccion,$poblacion,$cp,$provincia,
-    $estadoTarea,$fechaC,$operario,$fechaR,$anotA,$anotP,$foto,$fichero) {                 
+    public function actualizar($reg) {                 
         $cc = Database::getInstance(); 
         $sql = "UPDATE tarea SET nif = :nif,nombre=:nombre,apellidos=:apellidos,tlf=:tlf,descripcion=:descripcion,correo=:correo,
         direccion=:direccion,poblacion=:poblacion,cp=:cp,provincia=:provincia,estadoTarea=:estadoTarea,fechaC=:fechaC,operario=:operario,
         fechaR=:fechaR,anotA=:anotA,anotP=:anotP,foto=:foto,fichero=:fichero WHERE id=:id"; 
             $sql = $cc->db->prepare($sql);
 
-            $sql->bindParam(':id',$id,PDO::PARAM_INT);
-            $sql->bindParam(':nif',$nif,PDO::PARAM_STR);
-            $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
-            $sql->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-            $sql->bindParam(':tlf',$tlf,PDO::PARAM_INT);
-            $sql->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
-            $sql->bindParam(':correo',$correo,PDO::PARAM_STR);
-            $sql->bindParam(':direccion',$direccion,PDO::PARAM_STR);
-            $sql->bindParam(':poblacion',$poblacion,PDO::PARAM_STR);
-            $sql->bindParam(':cp',$cp,PDO::PARAM_INT);
-            $sql->bindParam(':provincia',$provincia,PDO::PARAM_STR);
-            $sql->bindParam(':estadoTarea',$estadoTarea,PDO::PARAM_STR);
-            $sql->bindParam(':fechaC',$fechaC,PDO::PARAM_STR);
-            $sql->bindParam(':operario',$operario,PDO::PARAM_STR);
-            $sql->bindParam(':fechaR',$fechaR,PDO::PARAM_STR);
-            $sql->bindParam(':anotA',$anotA,PDO::PARAM_STR);
-            $sql->bindParam(':anotP',$anotP,PDO::PARAM_STR);
-            $sql->bindParam(':foto',$foto,PDO::PARAM_STR);
-            $sql->bindParam(':fichero',$fichero,PDO::PARAM_STR);
-            
-             return $sql->execute();
-             
-             //$lastInsertId = $cc->db->lastInsertId();
+            //$sql->bindParam(':id',$reg,PDO::PARAM_INT);
+             echo '<h1>Se ha actualizado</h1>';
+             echo '<a href="../vista/listarTareas.php"><button type="button">VOLVER</button></a>';
+             return $sql->execute($reg);
                   
     } 
     
@@ -283,7 +263,7 @@ class Tarea  {
         $query->execute();
         include('../vista/encabezado.php');
         include('../vista/menuA.php'); 
-        $results = $query -> fetchAll(PDO::FETCH_OBJ); 
+        $results = $query -> fetch(PDO::FETCH_OBJ); 
         echo '<h1>Se ha procedido a borrar la tarea '.$id.' </h1>';
         echo '<a href="../vista/listarTareas.php"><button type="button">VOLVER</button></a>';
     }  

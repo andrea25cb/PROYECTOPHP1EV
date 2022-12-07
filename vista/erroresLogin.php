@@ -23,10 +23,6 @@ function VerError($campo) {
         return '';
     }
 }
-
-
-
-
      
         if ($_POST) {   
              // Han enviado datos
