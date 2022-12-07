@@ -3,7 +3,10 @@
 include(__DIR__ . '/database.php');
 class Usuario
 {
+/**Esta clase 'Usuario' es parte del modelo de mi proyecto, y dispone de diversos métodos, CRUD, 
+ * que afectarán a los usuarios, tanto a administradores como a operarios */
 
+ /**Insertar datos para la creación de un nuevo usuario */
     public function insertarUsuario($nombre, $correo, $contra, $nivel)
     {
         $cc = Database::getInstance();
@@ -27,6 +30,7 @@ class Usuario
         include('../vista/layout/pie.php');
     }
 
+    /**Listar todos los usuarios*/
     public function listarUsuarios()
     {
         $cc = Database::getInstance();
@@ -63,7 +67,7 @@ class Usuario
     // }
 
     
- /**Actualizar datos de un usuario concreta*/
+ /**Actualizar datos de un usuario con un correo concreto*/
     public function editarUsuario($nombre,$correo,$contra) 
     {                 
         $cc = Database::getInstance(); 
@@ -75,7 +79,7 @@ class Usuario
         
         $sql->execute();
  } 
-
+/**Borrar usuario con un correo concreto*/
     public function borrarUsuario($correo)
     {
         $cc = Database::getInstance();

@@ -1,4 +1,5 @@
 <?php
+/**Controlador de la opcion 'modificar' que permite editar los datos de una tarea*/
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
 

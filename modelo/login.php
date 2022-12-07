@@ -1,5 +1,10 @@
 <?php
 include(__DIR__ . '/database.php');
+
+/** Su función es comprobar el login de la primera pantalla/index ('login'), 
+ * diferenciando si el usuario que ingresa es administrador u operario
+ * mostrando los mensajes que convengan según el error cometido*/
+
 session_start();
 if(isset($_SESSION["admin_login"]))	//Condicion admin
 {

@@ -1,4 +1,5 @@
 <?php
+/**Controlador que permite filtrar los posibles errores de un formulario de alta*/
 $errores=[];
 
 if (!defined('FILTRAR_ERRORES')) {

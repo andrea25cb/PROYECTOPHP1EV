@@ -171,19 +171,23 @@ $provincias = [
         <p>Operario encargado:
            
 <?php
-$operarios = [];
+$operarios = [
+    "oper1"=>"operario 1",
+    "oper2"=>"operario 2",
+    "oper3"=>"operario 3",
+    "oper4"=>"operario 4",
+];
 
-
-if ($registro) { ?>
-    <select name="operario" value="<?=isset($_POST['operario']) ? $_POST['operario']: ''?>">
-    <?php foreach ($operarios as $value => $desc): ?>
-        <option value="<?= $registro->nombre ?>"
-        <?php if (filter_input(INPUT_POST, 'opcion') == $operarios)
-                echo 'selected'; ?>><?= $desc ?>
+// if ($registro) { ?>
+   <select name="operario">
+    <?php foreach($operarios as $value=>$desc) :?>
+        <option value="<?=$value?>"
+        <?php if (filter_input(INPUT_POST, 'opcion')==$operarios)
+        echo 'selected';?>><?=$desc?>
         </option>
     <?php endforeach; ?>
 </select>
-   <?php } ?>
+   <!-- <?php // } ?> -->
 
 <p>Fecha realización:
         <input type="date" name="fechaR" value="<?=isset($_POST['fechaR']) ? $_POST['fechaR']: ''?>"> <?=VerError('fechaR')?></p> 

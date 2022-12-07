@@ -1,13 +1,7 @@
 <?php
+/**Controlador que permite al admin insertar una nueva tarea, cogiendo los datos de un formulario de alta */
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
-
-$cc = Database::getInstance(); 
-$sql="SELECT * FROM tarea"; 
-$query= $cc->db->prepare($sql); 
-$query->execute();
-
-$registro = $query -> fetch(PDO::FETCH_OBJ);
 
 if (!$_POST) {
     // 1º vez

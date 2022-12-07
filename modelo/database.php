@@ -1,6 +1,6 @@
 <?php 
 /**
- * Clase de abstracción de base de datos
+ * Clase de abstracción de base de datos de 'proyecto1ev'
  */
 class Database { 
     

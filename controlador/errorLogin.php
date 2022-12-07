@@ -1,3 +1,5 @@
+<?php 
+/**Controlador que permite filtrar los posibles errores de un formulario de login*/?>
 <div class="wrapper">
 	<div class="container">
 		<div class="col-lg-12">

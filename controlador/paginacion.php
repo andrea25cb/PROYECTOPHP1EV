@@ -1,4 +1,5 @@
 <?php
+/**Controlador que paginará las tareas */
   include("../modelo/modTarea.php"); 
   $tarea=new Tarea();
   $tarea->paginacion();  

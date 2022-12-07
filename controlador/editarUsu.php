@@ -1,4 +1,5 @@
 <?php
+/**Controlador que permite editar los datos de un usuario cogiendo sus valores de un formulario */
 require_once("../modelo/modUsuario.php"); 
 if ($_POST) {    
     

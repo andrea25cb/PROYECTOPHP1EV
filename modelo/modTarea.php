@@ -1,8 +1,15 @@
 <?php 
+//@author andrea
 
 include(__DIR__ . '/database.php');
 class Tarea  { 
+/**Esta clase 'Tarea' es parte del modelo de mi proyecto, y dispone de diversos métodos, CRUD, 
+ * que afectarán a las tareas */
 
+    /**
+     * Paginación de la lista de tareas
+     * @return void
+     */
     public function paginacion(){
         $cc = Database::getInstance();
         $pagina=isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
@@ -68,7 +75,7 @@ class Tarea  {
 	$pdo_statement->execute();
 	$resultados = $pdo_statement->fetchAll();
     }
-        /**Listar todas las tareas*/
+        /**Listar todas las tareas, en todos los estados. Solo las ve el admin*/
         public function listar(){
             $cc = Database::getInstance();
             $sql = "SELECT * FROM tarea ORDER BY fechaR";
@@ -100,7 +107,7 @@ class Tarea  {
             }
         }
 
-         /**Listar todas las tareas*/
+         /**Listar todas las tareas del usuario;  pendientes, realizadas y canceladas*/
          public function tareasOperario($correo){ 
             $cc = Database::getInstance();
             $sql = "SELECT * FROM tarea WHERE correo=' $correo'";
@@ -130,7 +137,7 @@ class Tarea  {
             }
         }
 
-/**TODAS LAS TAREAS PENDIENTES POR HACER*/
+        /**TODAS LAS TAREAS PENDIENTES POR HACER, solo las verá el admin*/
         public function listarPendientes(){
             $cc = Database::getInstance();
             $sql = "SELECT * FROM tarea WHERE estadoTarea='Esperando a ser aprobada'";
@@ -163,6 +170,7 @@ class Tarea  {
             }
         }
 
+        /**Lista de tareas pendientes de un operario con un correo concreto, cuyo valor se cogerá en el login */
         public function listarPendientesOper($correo){
             $cc = Database::getInstance();
             $sql = "SELECT * FROM tarea ORDER BY fechaR WHERE estadoTarea='Esperando a ser aprobada' AND correo='$correo'";
@@ -193,7 +201,7 @@ class Tarea  {
             }
         }
 
-    /*insertar tarea */
+    /**Insertar nueva tarea */
     public function insertar($reg) {         
         $cc = Database::getInstance(); 
         $sql="INSERT INTO tarea(nif,nombre,apellidos,tlf,descripcion,correo,direccion,poblacion,cp,provincia,estadoTarea,
@@ -204,7 +212,7 @@ class Tarea  {
         return $sql->execute($reg);
     } 
 
-    /**Ver detalles de una tarea concreta*/
+    /**Ver detalles de una tarea con un id concreto*/
     public function verDetalles($id) { 
         $cc = Database::getInstance(); 
         $sql = "SELECT * FROM tarea WHERE id = $id";        
@@ -239,7 +247,7 @@ class Tarea  {
             }
 }
 
- /**Actualizar datos de una tarea concreta*/
+ /**Actualizar datos de una tarea con un id concreto*/
     public function actualizar($reg) {                 
         $cc = Database::getInstance(); 
         $sql = "UPDATE tarea SET nif = :nif,nombre=:nombre,apellidos=:apellidos,tlf=:tlf,descripcion=:descripcion,correo=:correo,
@@ -253,7 +261,11 @@ class Tarea  {
              return $sql->execute($reg);
                   
     } 
-    
+    /**
+     * Borrar los datos de una tarea con un id concreto
+     * @param mixed $id
+     * @return void
+     */
     public function borrar($id){
         $cc = Database::getInstance(); 
         $sql = "DELETE FROM tarea WHERE id = $id";        
@@ -265,20 +277,20 @@ class Tarea  {
         echo '<h1>Se ha procedido a borrar la tarea '.$id.' </h1>';
         }  
 
-    public function listaOperarios(){
-    echo '<select name="operario"><option></option>';
-    $cc = Database::getInstance(); 
-    $sql = "SELECT operario FROM tarea";        
-    $query= $cc->db->prepare($sql); 
-    $query->execute();
-    $results = $query -> fetchAll(PDO::FETCH_OBJ); 
+    // public function listaOperarios(){
+    // echo '<select name="operario"><option></option>';
+    // $cc = Database::getInstance(); 
+    // $sql = "SELECT operario FROM tarea";        
+    // $query= $cc->db->prepare($sql); 
+    // $query->execute();
+    // $results = $query -> fetchAll(PDO::FETCH_OBJ); 
 
-    if($query -> rowCount() > 0)   { 
-    foreach($results as $registro) { 
-        echo "<option value='".$registro->operario."'>".$registro->operario."</option>";
-         }
-    }
-    echo '</select>';
-    }
+    // if($query -> rowCount() > 0)   { 
+    // foreach($results as $registro) { 
+    //     echo "<option value='".$registro->operario."'>".$registro->operario."</option>";
+    //      }
+    // }
+    // echo '</select>';
+    // }
 
 } 
