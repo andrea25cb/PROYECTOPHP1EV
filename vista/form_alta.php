@@ -194,15 +194,17 @@ $operarios = [
         
         <p>Anotaciones posteriores:<br>
         <textarea class="form-control"  name="anotP" value="<?=isset($_POST['anotP']) ? $_POST['anotP']: ''?>"> Anotaciones realizadas por los operarios después de realizar la tarea.</textarea></p>
+        
+        
         <!-- permitir adjuntar fichero -->
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupFile01">ADJUNTAR FICHERO</label>
-            <input type="file" class="form-control" id="inputGroupFile01"name="fichero" value="<?=isset($_POST['fichero']) ? $_POST['fichero']: ''?>">
+             <input type="file" class="form-control" name="fichero" id="inputGroupFile01" value="<?=isset($_POST['fichero']) ? $_POST['fichero']: ''?>">
         </div>
 
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupFile01">Fotos del trabajo realizado</label>
-            <input type="file" class="form-control" id="inputGroupFile01" name="foto" value="<?=isset($_POST['foto']) ? $_POST['foto']: ''?>" accept=".png, image/png">
+            <input type="file" class="form-control" id="inputGroupFile01" name="foto" accept=".png, image/png" value="<?=isset($_POST['foto']) ? $_POST['foto']: ''?>" accept=".png, image/png">
         </div>
      
        <input type="submit" name="enviar" value="ENVIAR">

@@ -3,17 +3,22 @@
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
 
+$fich_dest = "../Doc";
+$subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
+
 if (!$_POST) {
     // 1º vez
     include('../vista/form_alta.php');
 }
 else {
-    
     $errores = filtrarErrores();
     
  if ($errores){
     include('../vista/form_alta.php');
- }else{   
+ }else{
+        if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
+            move_uploaded_file($_FILES['fichero']['tmp_name'], $subir_archivo);
+        }
     $reg = [
         'id' => filter_input(INPUT_POST, 'id'),
         'nif' => filter_input(INPUT_POST, 'nif'),
@@ -33,7 +38,7 @@ else {
         'anotA' => filter_input(INPUT_POST, 'anotA'),
         'anotP' => filter_input(INPUT_POST, 'anotP'),
         'fichero' => filter_input(INPUT_POST, 'fichero'),
-        'foto' => filter_input(INPUT_POST, 'foto'),
+        'foto' => $nombre_archivo,
     ];
 
 $tarea=new Tarea();
