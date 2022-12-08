@@ -21,8 +21,9 @@ class Usuario
 
         $sql->execute();
 
-        //$lastInsertId = $cc->db->lastInsertId();
-        include('../vista/layout/encabezado.php');
+        include('../vista/layout/encabezado.php'); 
+        include('../vista/layout/menuA.php'); 
+        
 
         echo "<h1>USUARIO CREADO CON EXITO</h1>";
         echo " <a href='../vista/listarUsuarios.php'>
@@ -46,9 +47,9 @@ class Usuario
             <td>" . $registro->correo . "</td>
             <td>*********</td>
             <td>
-            <a href='confirmarDespedir.php?correo=" . $registro->correo . "'>
+            <a href='../controlador/borrarUsuario.php?correo=" . $registro->correo . "'>
             <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
-            <a href='../vista/editarUsuario.php?correo=" . $registro->correo . "'>
+            <a href='../controlador/editarUsu.php?correo=" . $registro->correo . "'>
             <button class='btn btn-primary' type='button'>EDITAR</button></a>    
             
         </tr>";
@@ -56,16 +57,6 @@ class Usuario
 
         }
     }
-
-    // public function listarNombreUsuarios()
-    // {
-    //     $cc = Database::getInstance();
-    //     $sql = "SELECT nombre FROM usuario";
-    //     $query = $cc->db->prepare($sql);
-    //     $query->execute();
-
-    // }
-
     
  /**Actualizar datos de un usuario con un correo concreto*/
     public function editarUsuario($nombre,$correo,$contra) 
@@ -76,9 +67,13 @@ class Usuario
         $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
         $sql->bindParam(':correo',$correo,PDO::PARAM_STR);
         $sql->bindParam(':contra',$contra,PDO::PARAM_STR);
+        include('../vista/layout/encabezado.php'); 
+        include('../vista/layout/menuA.php'); 
         
-        $sql->execute();
+        echo '<h1>Se ha modificado el operario ' . $correo . ' </h1>';
+        return $sql->execute();
  } 
+
 /**Borrar usuario con un correo concreto*/
     public function borrarUsuario($correo)
     {
@@ -86,12 +81,12 @@ class Usuario
         $sql = "DELETE FROM usuario WHERE correo =:correo";
         $sql = $cc->db->prepare($sql);
         $sql->bindParam(':correo',$correo,PDO::PARAM_STR);
-        $sql->execute();
+        
         include('../vista/layout/encabezado.php'); 
         include('../vista/layout/menuA.php'); 
-        $results = $sql->fetchAll(PDO::FETCH_OBJ);
+        
         echo '<h1>Se ha procedido a despedir el operario ' . $correo . ' </h1>';
         echo '<a href="../vista/listarUsuarios.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
-
+        return $sql->execute();
     }
 }

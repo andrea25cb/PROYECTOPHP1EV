@@ -23,7 +23,7 @@
     <?php 
 include('layout/encabezado.php');
 include('layout/menuA.php');
- include('../controlador/buscarTareas.php');
+include('../controlador/buscarTareas.php');
     /**BUSCADOR DE TAREAS: */
 ?>
 

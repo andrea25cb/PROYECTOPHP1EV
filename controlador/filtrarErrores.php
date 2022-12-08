@@ -69,6 +69,10 @@ if (!defined('FILTRAR_ERRORES')) {
         if (filter_input(INPUT_POST, 'nombre') == '') {
             $errores['nombre'] = 'No puede estar vacío';
         }
+
+        if (filter_input(INPUT_POST, 'contra') == '') {
+            $errores['contra'] = 'No puede estar vacío';
+        }
         if (filter_input(INPUT_POST, 'apellidos') == '') {
             $errores['apellidos'] = 'No puede estar vacío';
         }

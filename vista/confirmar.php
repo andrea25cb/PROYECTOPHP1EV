@@ -30,7 +30,7 @@ include('layout/menuA.php');
               <button type="submit" class="btn btn-primary" name="borrar">
                 SI, ESTOY SEGURO
               </button>
-              <a href="listarTareas.php" class="btn btn-danger"> NO, VOLVER </a>
+              <a href="../vista/listarTareas.php" class="btn btn-danger"> NO, VOLVER </a>
               <input type="hidden" name="borrar" value="borrar">
             </div>
 </form>

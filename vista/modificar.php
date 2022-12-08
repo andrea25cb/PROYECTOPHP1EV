@@ -196,7 +196,7 @@ if ($registro) {
         </div>
 
     <input type="hidden" name="id" value="<?= $id ?>">
-    <input type="submit" name="actualizar" value="actualizar">
+    <input type="submit" class="btn btn-primary" name="actualizar" value="actualizar">
 </form>
 <?php
     }

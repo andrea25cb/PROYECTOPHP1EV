@@ -28,7 +28,7 @@ $correo=$_GET['correo'];
               <button type="submit" class="btn btn-primary" name="borrar">
                 SI, ESTOY SEGURO
               </button>
-              <a href="listarUsuarios.php" class="btn btn-danger"> NO, VOLVER </a>
+              <a href="../vista/listarUsuarios.php" class="btn btn-danger"> NO, VOLVER </a>
              
             </div>
 </form>

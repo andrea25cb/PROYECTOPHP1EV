@@ -20,17 +20,15 @@ include('menuO.php');
 try {
     include('../config/conex.php');
     $conex=Conecta();
-    $id=$_GET['id']; //?me da error de sintaxis
- 
-    echo '<h1>MODIFICANDO LA TAREA '.$id.' </h1>';
-    /**Para coger los valores y mostrarlos en los inputs: */
-    $sql="SELECT * FROM tarea WHERE id = $id"; //fallo de sintaxis?? 
+    $id=$_GET['id']; 
 
-    $rs = mysqli_query($conex,$sql);
-    while($registro=mysqli_fetch_object($rs)):
+    echo '<h1>MODIFICANDO LA TAREA '.$id.' </h1>';
+
+if ($registro) {
+    
       ?>
 
-    <form action="../vista/errores_modificar.php?id=<?=$id?>" method="POST" enctype="multipart/form-data">
+    <form action="../controlador/completarTarea.php?id=<?=$id?>" method="POST" enctype="multipart/form-data">
         
         <p>Descripción tarea:<br>
         <textarea class="form-control" name="desc" readonly value="<?= $registro->descripcion ?>"><?= $registro->descripcion ?></textarea>
@@ -84,12 +82,12 @@ try {
     <input type="submit" name="actualizar" value="actualizar">
 </form>
 <?php
-   
-    endwhile;
-    // }
+}
+
 }catch(\Exception $e) {
 	echo $e->getMessage();
 }
+
 ?>
    </div>
     </div>

@@ -98,7 +98,7 @@ class Tarea  {
         <td>
         <a href='../controlador/modificarTarea.php?id=" . $registro->id . "'>
         <button class='btn btn-primary' type='button'>MODIFICAR</button></a>
-        <a href='confirmar.php?id=" . $registro->id . "'>
+        <a href='../controlador/borrarTarea.php?id=" . $registro->id . "'>
         <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
         <a href='detalles.php?id=" . $registro->id . "'>
         <button class='btn btn-primary' type='button'>DETALLES</button></a></td>      
@@ -158,9 +158,9 @@ class Tarea  {
         <td>" . $registro->anotA . "</td>
         <td>" . $registro->anotP . "</td>
         <td>
-        <a href='errores_modificar.php?id=" . $registro->id . "''>
+        <a href='../controlador/modificarTarea.php?id=" . $registro->id . "''>
         <button class='btn btn-primary' type='button'>MODIFICAR</button></a>
-        <a href='confirmar.php?id=" . $registro->id . "'>
+        <a href='../controlador/borrarTarea.php?id=" . $registro->id . "'>
         <button class='btn btn-danger text-left' type='button'>BORRAR</button></a>
         <a href='detalles.php?id=" . $registro->id . "''>
         <button class='btn btn-primary' type='button'>DETALLES</button></a></td>      
@@ -191,9 +191,9 @@ class Tarea  {
         <td>" . $registro->anotA . "</td>
         <td>" . $registro->anotP . "</td>
         <td>
-        <a href='../vista/errores_modificar.php?id=' . $registro->id . '>
+        <a href='../controlador/completarTarea.php?id=' . $registro->id . '>
             <button class='btn btn-primary' type='button'>COMPLETAR TAREA</button></a>
-            <a href='../modelo/verdetalles.php?id=' . $registro->id . '>
+            <a href='detalles.php?id=' . $registro->id . '>
             <button class='btn btn-primary' type='button'>VER DETALLES</button></a></td>      
            </tr>";
           }
@@ -255,12 +255,24 @@ class Tarea  {
         fechaR=:fechaR,anotA=:anotA,anotP=:anotP,foto=:foto,fichero=:fichero WHERE id=:id"; 
             $sql = $cc->db->prepare($sql);
 
-            //$sql->bindParam(':id',$reg,PDO::PARAM_INT);
              echo '<h1>Se ha actualizado</h1>';
              echo '<a href="../vista/listarTareas.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
-             return $sql->execute($reg);
-                  
+             return $sql->execute($reg); 
     } 
+
+    /**Completar tarea de un operario*/
+    public function completarTarea($reg) {                 
+        $cc = Database::getInstance(); 
+        $sql = "UPDATE tarea SET descripcion=:descripcion,estadoTarea=:estadoTarea,fechaC=:fechaC,
+        fechaR=:fechaR,anotA=:anotA,anotP=:anotP,foto=:foto,fichero=:fichero WHERE id=:id"; 
+            $sql = $cc->db->prepare($sql);
+
+            //$sql->bindParam(':id',$reg,PDO::PARAM_INT);
+            echo '<h1>Se ha completado la tarea</h1>';
+            echo '<a href="../vista/listarTareasOperario.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
+            return $sql->execute($reg);          
+    } 
+
     /**
      * Borrar los datos de una tarea con un id concreto
      * @param mixed $id
@@ -273,7 +285,6 @@ class Tarea  {
         $query->execute();
         include('../vista/layout/encabezado.php');
         include('../vista/layout/menuA.php'); 
-        $results = $query -> fetch(PDO::FETCH_OBJ); 
         echo '<h1>Se ha procedido a borrar la tarea '.$id.' </h1>';
         }  
 
