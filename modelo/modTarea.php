@@ -173,11 +173,11 @@ class Tarea  {
         /**Lista de tareas pendientes de un operario con un correo concreto, cuyo valor se cogerá en el login */
         public function listarPendientesOper($correo){
             $cc = Database::getInstance();
-            $sql = "SELECT * FROM tarea ORDER BY fechaR WHERE estadoTarea='Esperando a ser aprobada' AND correo='$correo'";
+            $sql = "SELECT * FROM tarea 
+            WHERE estadoTarea='Esperando a ser aprobada' AND correo='$correo' ORDER BY fechaR ";
             $query = $cc->db->prepare($sql);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);
-            //Query
     
             if ($query->rowCount() > 0) {
                 foreach ($results as $registro) {
@@ -266,7 +266,6 @@ class Tarea  {
         fechaR=:fechaR,anotA=:anotA,anotP=:anotP,fichero=:fichero WHERE id=:id"; 
             $sql = $cc->db->prepare($sql);
 
-            //$sql->bindParam(':id',$reg,PDO::PARAM_INT);
             echo '<h1>Se ha completado la tarea</h1>';
             echo '<a href="../vista/listarTareasOperario.php"><button class="btn btn-primary" type="button">VOLVER</button></a>';
             return $sql->execute($reg);          

@@ -5,25 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COMPLETAR TAREA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script src="js/jquery-1.12.4-jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
     <?php
-include('encabezado.php');
-include('menuO.php'); 
+include('layout/encabezado.php');
+include('layout/menuA.php');
 ?>
 <div class="container">
-        <div class="centrar">
-<?php
-try {
-    include('../config/conex.php');
-    $conex=Conecta();
+        <div class="centrar"> 
+          <?php
+
     $id=$_GET['id']; 
+        ?>
+        <h3>COMPLETANDO LA TAREA <?=$id?></h3>
+        
+        <p><input type="hidden" name="id" value="<?=$id?>"></p>
 
-    echo '<h1>MODIFICANDO LA TAREA '.$id.' </h1>';
-
+<?php
 if ($registro) {
     
       ?>
@@ -69,12 +71,6 @@ if ($registro) {
             <label class="input-group-text" for="inputGroupFile01">ADJUNTAR FICHERO</label>
             <input type="file" class="form-control" id="inputGroupFile01"name="fichero" value="<?= $registro->fichero ?>">
         </div>
- 
-
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupFile01">Fotos del trabajo realizado</label>
-            <input type="file" class="form-control" id="inputGroupFile01" name="foto" value="<?= $registro->foto ?>" accept=".png, image/png">
-        </div>
 
     <input type="hidden" name="id" value="<?=$id?>">
  
@@ -82,10 +78,6 @@ if ($registro) {
     <input type="submit" name="actualizar" value="actualizar">
 </form>
 <?php
-}
-
-}catch(\Exception $e) {
-	echo $e->getMessage();
 }
 
 ?>

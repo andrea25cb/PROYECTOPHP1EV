@@ -1,6 +1,6 @@
 <?php
 /**
- * VISTA QUE MUESTA LA LISTA DE TAREAS DE UN OPERARIO
+ * VISTA QUE MUESTA LA LISTA DE TAREAS DEL OPERARIO QUE INICIA SESION
  * 
  */
 ?>
@@ -28,7 +28,7 @@ include('layout/menuO.php');
 <!-- <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'>
+      <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php //echo $search_keyword; ?>" id='keyword' maxlength='25'>
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
       </span>
@@ -62,6 +62,7 @@ include('layout/menuO.php');
 </div>
 </div>
 </div>
-<?php include('layout/pie.php'); ?>
+
 </body>
 </html>
+<?php include('layout/pie.php'); ?>

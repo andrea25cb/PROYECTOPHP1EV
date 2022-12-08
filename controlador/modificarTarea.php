@@ -19,10 +19,8 @@ if (!$_POST) {
 else {
     
     $errores = filtrarErrores();
-    print_r($errores);
-    $fichero = $_FILES['fichero']['tmp_name'];
-    echo "<pre>".$fichero."</pre>";
 
+    $fichero = $_FILES['fichero']['tmp_name'];
   
  if ($errores){
     include('../vista/modificar.php');
@@ -48,8 +46,6 @@ else {
         'anotP' => filter_input(INPUT_POST, 'anotP'),
         'fichero' =>$fichero,
     ];
-    var_dump($fichero);
-    var_dump($reg);
 
     $tarea=new Tarea();
     $tarea->actualizar($reg);

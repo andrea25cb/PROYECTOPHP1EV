@@ -18,11 +18,9 @@ if (!$_POST) {
 }
 else {
     
-    $errores = filtrarErrores();
-    print_r($errores);
+    $errores = filtrarErroresCompletar();
+    
     $fichero = $_FILES['fichero']['tmp_name'];
-    echo "<pre>".$fichero."</pre>";
-
     
  if ($errores){
     include('../vista/completarTareaOperario.php');

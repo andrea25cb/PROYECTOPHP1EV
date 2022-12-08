@@ -3,7 +3,6 @@
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
 
-print_r($errores);
 if (!$_POST) {
     // 1º vez
     include('../vista/form_alta.php');

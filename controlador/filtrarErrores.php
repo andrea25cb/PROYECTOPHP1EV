@@ -56,11 +56,31 @@ if (!defined('FILTRAR_ERRORES')) {
 
     function insertarFichero($nombre_archivo)
     {
+        $fich_dest ="../files/";
+        $nombre_archivo = $fich_dest . basename($_FILES['fichero']['name']);
+     
         if(is_uploaded_file( $_FILES['fichero']['tmp_name'])){
-            $nombre_archivo = __DIR__.'/files';
+     
             move_uploaded_file($_FILES['fichero']['tmp_name'],$nombre_archivo);
-
         }
+    }
+
+    function filtrarErroresCompletar()
+    {
+        $errores = [];
+
+        if (filter_input(INPUT_POST, 'descripcion') == '') {
+            $errores['descripcion'] = 'No puede estar vacío';
+        }
+
+        if (filter_input(INPUT_POST, 'estadoTarea') == '') {
+            $errores['estadoTarea'] = 'Debe seleccionar un estado de la tarea';
+        }
+
+        if (filter_input(INPUT_POST, 'provincia') == "") {
+            $errores['provincia'] = 'Debe seleccionar una provincia';
+        }
+        return $errores;
     }
 
     /**VALIDACIONES:  */

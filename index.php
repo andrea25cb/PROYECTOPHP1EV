@@ -56,19 +56,19 @@ include('controlador/errorLogin.php')
   <div class="form-group">
   <label class="col-sm-6 text-left">Correo</label>
   <div class="col-sm-12">
-  <input type="text" name="correo" value="<?=isset($_POST['correo']) ? $_POST['correo']: ''?>" class="form-control" placeholder="Ingrese correo" />
+  <input type="text" name="correo" value="<?php if(isset($_COOKIE["correo"])) { echo $_COOKIE["correo"]; } ?>" class="form-control" class="form-control" placeholder="Ingrese correo" />
   </div>
   </div>
       
   <div class="form-group">
   <label class="col-sm-6 text-left">Contraseña</label>
   <div class="col-sm-12">
-  <input type="password" value="<?=isset($_POST['contra']) ? $_POST['contra']: ''?>" name="contra" class="form-control" placeholder="Ingrese contraseña" />
+  <input type="password" name="contra" value="<?php if(isset($_COOKIE["contra"])) { echo $_COOKIE["contra"]; } ?>" name="contra" class="form-control" placeholder="Ingrese contraseña" />
   </div>
   </div>
 
   <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <input class="form-check-input" type="checkbox" name="recuerdame" value="" id="flexCheckChecked" <?php if(isset($_COOKIE["correo"])) { ?> checked <?php } ?> />
   <label class="form-check-label" for="flexCheckChecked">
     Recordarme
   </label>
