@@ -1,7 +1,7 @@
 <?php
 /**Controlador que permite editar los datos de un usuario cogiendo sus valores de un formulario */
 require_once("../modelo/modUsuario.php"); 
-include('filtrarErrores.php');
+include('filtrarErroresUsuario.php');
 
 $correo=$_GET['correo']; 
     /**Para coger los valores y mostrarlos en los inputs: */
@@ -21,7 +21,8 @@ else {
     $errores = filtrarErrores();
     
  if ($errores){
-    include('../vista/editarUsuario.php');
+       // print_r($errores);
+    include('../vista/editarUsuario.php'); //NO LLEGA AQUI
  }else{
     $nombre = filter_input(INPUT_POST, 'nombre');
     $correo = filter_input(INPUT_POST, 'correo');

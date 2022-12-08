@@ -23,7 +23,7 @@
     <?php 
 include('layout/encabezado.php');
 include('layout/menuA.php');
-include('../controlador/buscarTareas.php');
+// include('../controlador/buscarTareas.php');
     /**BUSCADOR DE TAREAS: */
 ?>
 
@@ -43,7 +43,7 @@ include('../controlador/buscarTareas.php');
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>
-<a style="float:right ;" href="../controlador/insertarTarea.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nueva tarea"></a>
+<a style="float:right ;"  href="../controlador/insertarTarea.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nueva tarea"></a>
 <br><br><p>
     <div class="col-12 col-md-12"> 
       <!-- Contenido -->

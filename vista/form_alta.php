@@ -204,10 +204,10 @@ $operarios = [
 
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupFile01">Fotos del trabajo realizado</label>
-            <input type="file" class="form-control" id="inputGroupFile01" name="foto" accept=".png, image/png" value="<?=isset($_POST['foto']) ? $_POST['foto']: ''?>" accept=".png, image/png">
+            <input type="file" class="form-control" id="inputGroupFile01" name="foto" value="<?=isset($_POST['foto']) ? $_POST['foto']: ''?>" accept=".png, image/png">
         </div>
      
-       <input type="submit" name="enviar" value="ENVIAR">
+       <input class="btn btn-primary" type="submit" name="enviar" value="ENVIAR">
        <br>
     </form>
     </div>

@@ -66,17 +66,13 @@ include('controlador/errorLogin.php')
   <input type="password" value="<?=isset($_POST['contra']) ? $_POST['contra']: ''?>" name="contra" class="form-control" placeholder="Ingrese contraseña" />
   </div>
   </div>
-      
-  <div class="form-group">
-      <label class="col-sm-6 text-left">Seleccionar rol</label>
-      <div class="col-sm-12">
-      <select class="form-control" name="nivel">
-          <option value="" selected="selected"> - selecccionar rol - </option>
-          <option value="admin">Admin</option>
-          <option value="operario">Operario</option>
-      </select>
-      </div>
-  </div>
+
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Recordarme
+  </label>
+</div>
   
   <div class="form-group">
   <div class="col-sm-12">

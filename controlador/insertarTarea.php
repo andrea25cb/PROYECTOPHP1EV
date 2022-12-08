@@ -3,8 +3,8 @@
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
 
-$fich_dest = "../Doc";
-$subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
+// $fich_dest = "../Doc";
+// $subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
 
 if (!$_POST) {
     // 1º vez
@@ -16,9 +16,10 @@ else {
  if ($errores){
     include('../vista/form_alta.php');
  }else{
-        if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
-            move_uploaded_file($_FILES['fichero']['tmp_name'], $subir_archivo);
-        }
+        // if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
+        //     move_uploaded_file($_FILES['fichero']['tmp_name'], $subir_archivo);
+        //     print_r($_FILES);
+        // }
     $reg = [
         'id' => filter_input(INPUT_POST, 'id'),
         'nif' => filter_input(INPUT_POST, 'nif'),
@@ -37,11 +38,11 @@ else {
         'fechaR' => filter_input(INPUT_POST, 'fechaR'),
         'anotA' => filter_input(INPUT_POST, 'anotA'),
         'anotP' => filter_input(INPUT_POST, 'anotP'),
-        'fichero' => filter_input(INPUT_POST, 'fichero'),
-        'foto' => $nombre_archivo,
+        'fichero' => $subir_archivo,
+        'foto' => filter_input(INPUT_POST, 'foto'),
     ];
 
-$tarea=new Tarea();
-$tarea->insertar($reg);
-}
+    $tarea=new Tarea();
+    $tarea->insertar($reg);
+    }
 }

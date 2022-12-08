@@ -18,17 +18,11 @@ class Usuario
         $sql->bindParam(':correo', $correo, PDO::PARAM_STR);
         $sql->bindParam(':contra', $contra, PDO::PARAM_STR);
         $sql->bindParam(':nivel', $nivel, PDO::PARAM_STR);
-
-        $sql->execute();
-
         include('../vista/layout/encabezado.php'); 
         include('../vista/layout/menuA.php'); 
-        
-
         echo "<h1>USUARIO CREADO CON EXITO</h1>";
-        echo " <a href='../vista/listarUsuarios.php'>
-        <button class='btn btn-primary' type='button'>VOLVER</button></a>";
-        include('../vista/layout/pie.php');
+        return $sql->execute();
+
     }
 
     /**Listar todos los usuarios*/
@@ -54,7 +48,6 @@ class Usuario
             
         </tr>";
             }
-
         }
     }
     
@@ -69,8 +62,7 @@ class Usuario
         $sql->bindParam(':contra',$contra,PDO::PARAM_STR);
         include('../vista/layout/encabezado.php'); 
         include('../vista/layout/menuA.php'); 
-        
-        echo '<h1>Se ha modificado el operario ' . $correo . ' </h1>';
+        echo '<h1>Se ha modificado el operario</h1>';
         return $sql->execute();
  } 
 

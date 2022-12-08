@@ -3,14 +3,18 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>INSERTAR USUARIO</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
-    <body><?php include('../vista/layout/encabezado.php');
-     include('../vista/layout/menuA.php');?>
+    <body>
+
+      <?php 
+    include('../vista/layout/encabezado.php');
+    include('../vista/layout/menuA.php');?>
+
     <div class="container">
         <div class="centrar">
           <br>
@@ -33,7 +37,6 @@
             </div><?= VerError('contra') ?> <p> 
            
             <div class="col-md-6 col-md-offset-4">
-              
               <button type="submit" class="btn btn-primary">
                 Guardar
               </button>

@@ -11,10 +11,13 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
     </head>
-    <body><?php 
-    include('../vista/layout/encabezado.php');
+    <body>
+        
+    <?php 
+    include('layout/encabezado.php');
     include('layout/menuA.php'); 
     ?>
+    
     <div class="container">
         <div class="centrar">
             <?php 
@@ -28,17 +31,19 @@
         ?>
           <br>              
           <form action="../controlador/editarUsu.php?correo=<?= $correo ?>" method="POST" >
-             <!--Nombre y Apellidos  -->
+             <!--Nombre  -->
         <div class="input-group">
             <span class="input-group-text">Nombre  </span>
                 <input class="form-control" type="text" name="nombre" value="<?= $registro->nombre ?>">
         </div><?= VerError('nombre') ?> <p> 
-      
+
+       <!-- Correo  -->
         <div class="input-group">
         <span class="input-group-text">Correo</span>
               <input class="form-control" type="text" name="correo" value="<?= $registro->correo ?>">
                 </div><?= VerError('correo') ?> <p> 
-        
+
+         <!-- Contra  -->
         <div class="input-group">
             <span class="input-group-text">Contraseña</span>
               <input class="form-control" type="text" name="contra" value="<?= $registro->contra ?>">

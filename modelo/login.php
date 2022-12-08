@@ -19,7 +19,6 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 {
 	$correo = $_REQUEST["correo"];	//textbox nombre "correo"
 	$contra = $_REQUEST["contra"];	//textbox nombre "contra"
-	$nivel  = $_REQUEST["nivel"];	//select opcion nombre "nivel"
 		
 	if(empty($correo)){						
 		$errorMsg[]="Por favor ingrese correo";	//Revisar correo vacio
@@ -27,21 +26,18 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 	else if(empty($contra)){
 		$errorMsg[]="Por favor ingrese contraseña";	//Revisar contra vacia
 	}
-	else if(empty($nivel)){
-		$errorMsg[]="Por favor seleccione su nivel ";	//Revisar nivel vacio
-	}
-	else if($correo AND $contra AND $nivel) //y si no están vacios:
+	else if($correo AND $contra ) //y si no están vacios:
 	{
-		try //lo siguiente ya estaria en el modelo:
+		try
 		{
 			$cc = Database::getInstance();
-			$select_stmt=$cc->db->prepare("SELECT correo,contra,nivel FROM usuario
+			$select_stmt=$cc->db->prepare("SELECT * FROM usuario
 										WHERE
-										correo=:ucorreo AND contra=:ucontra AND nivel=:univel"); 
+										correo=:ucorreo AND contra=:ucontra"); 
 			$select_stmt->bindParam(":ucorreo",$correo);
 			$select_stmt->bindParam(":ucontra",$contra);
-			$select_stmt->bindParam(":univel",$nivel);
-			$select_stmt->execute();	//execute query
+			// $select_stmt->bindParam(":univel",$nivel);
+			$select_stmt->execute();
 					
 			while($row=$select_stmt->fetch(PDO::FETCH_ASSOC))	
 			{
@@ -49,11 +45,11 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 				$dbcontra	=$row["contra"];
 				$dbnivel	=$row["nivel"];
 			}
-			if($correo!=null AND $contra!=null AND $nivel!=null)	
+			if($correo!=null AND $contra!=null)	
 			{
 				if($select_stmt->rowCount()>0)
 				{
-					if($correo==$dbcorreo and $contra==$dbcontra and $nivel==$dbnivel)
+					if($correo==$dbcorreo and $contra==$dbcontra)
 					{
 						switch($dbnivel)		//inicio de sesión de usuario base de nivels
 						{
@@ -70,33 +66,32 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 								break;
 								
 							default:
-								$errorMsg[]="correo electrónico o contraseña o rol incorrectos";
+								$errorMsg[]="correo electrónico o contraseña incorrectos";
 						}
 					}
 					else
 					{
-						$errorMsg[]="correo electrónico o contraseña o rol incorrectos";
+						$errorMsg[]="correo electrónico o contraseña incorrectos";
 					}
 				}
 				else
 				{
-					$errorMsg[]="correo electrónico o contraseña o rol incorrectos";
+					$errorMsg[]="correo electrónico o contraseña incorrectos";
 				}
 			}
 			else
 			{
-				$errorMsg[]="correo electrónico o contraseña o rol incorrectos";
+				$errorMsg[]="correo electrónico o contraseña incorrectos";
 			}
 		}
 		catch(PDOException $e)
 		{
 			$e->getMessage();
 		}		
-        //fin del modelo
 	}
 	else
 	{
-		$errorMsg[]="correo electrónico o contraseña o rol incorrectos";
+		$errorMsg[]="correo electrónico o contraseña incorrectos";
 	}
 }
 ?>
