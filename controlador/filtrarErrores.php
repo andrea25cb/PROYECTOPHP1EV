@@ -54,15 +54,13 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
-    function insertarFichero($fichero){
-        if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
-            move_uploaded_file($_FILES['fichero']['tmp_name'], $fichero);
-        }else{
-            echo "No se ha podido subir el fichero";
+    function insertarFichero($nombre_archivo)
+    {
+        if(is_uploaded_file( $_FILES['fichero']['tmp_name'])){
+            $nombre_archivo = __DIR__.'/files';
+            move_uploaded_file($_FILES['fichero']['tmp_name'],$nombre_archivo);
+
         }
-    }
-    function insertarFoto($foto){
-        
     }
 
     /**VALIDACIONES:  */
@@ -79,9 +77,6 @@ if (!defined('FILTRAR_ERRORES')) {
         }
         if (filter_input(INPUT_POST, 'nombre') == '') {
             $errores['nombre'] = 'No puede estar vacío';
-        }
-        if (filter_input(INPUT_POST, 'contra') == '') {
-            $errores['contra'] = 'No puede estar vacío';
         }
         if (filter_input(INPUT_POST, 'apellidos') == '') {
             $errores['apellidos'] = 'No puede estar vacío';

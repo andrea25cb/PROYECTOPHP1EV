@@ -205,7 +205,7 @@ class Tarea  {
     public function insertar($reg) {         
         $cc = Database::getInstance(); 
         $sql="INSERT INTO tarea(nif,nombre,apellidos,tlf,descripcion,correo,direccion,poblacion,cp,provincia,estadoTarea,
-        fechaC,operario,fechaR,anotA,anotP,foto,fichero) VALUES(:nif,:nombre,:apellidos,:tlf,:descripcion,:correo,:direccion,:poblacion,:cp,:provincia,:estadoTarea,:fechaC,:operario,:fechaR,:anotA,:anotP,:foto,:fichero)";
+        fechaC,operario,fechaR,anotA,anotP,foto,fichero) VALUES(:nif,:nombre,:apellidos,:tlf,:descripcion,:correo,:direccion,:poblacion,:cp,:provincia,:estadoTarea,:fechaC,:operario,:fechaR,:anotA,:anotP,:fichero)";
         $sql = $cc->db->prepare($sql);
     
         echo "<h1>TAREA INSERTADA</h1>";
@@ -241,7 +241,6 @@ class Tarea  {
             <td>".$registro->fechaR."</td>
             <td>".$registro->anotA."</td>
             <td>".$registro->anotP."</td>
-            <td>".$registro->foto."</td>
             <td>".$registro->fichero."</td></tr>";
                 } 
             }
@@ -252,7 +251,7 @@ class Tarea  {
         $cc = Database::getInstance(); 
         $sql = "UPDATE tarea SET nif = :nif,nombre=:nombre,apellidos=:apellidos,tlf=:tlf,descripcion=:descripcion,correo=:correo,
         direccion=:direccion,poblacion=:poblacion,cp=:cp,provincia=:provincia,estadoTarea=:estadoTarea,fechaC=:fechaC,operario=:operario,
-        fechaR=:fechaR,anotA=:anotA,anotP=:anotP,foto=:foto,fichero=:fichero WHERE id=:id"; 
+        fechaR=:fechaR,anotA=:anotA,anotP=:anotP,fichero=:fichero WHERE id=:id"; 
             $sql = $cc->db->prepare($sql);
 
              echo '<h1>Se ha actualizado</h1>';
@@ -264,7 +263,7 @@ class Tarea  {
     public function completarTarea($reg) {                 
         $cc = Database::getInstance(); 
         $sql = "UPDATE tarea SET descripcion=:descripcion,estadoTarea=:estadoTarea,fechaC=:fechaC,
-        fechaR=:fechaR,anotA=:anotA,anotP=:anotP,foto=:foto,fichero=:fichero WHERE id=:id"; 
+        fechaR=:fechaR,anotA=:anotA,anotP=:anotP,fichero=:fichero WHERE id=:id"; 
             $sql = $cc->db->prepare($sql);
 
             //$sql->bindParam(':id',$reg,PDO::PARAM_INT);

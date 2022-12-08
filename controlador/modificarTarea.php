@@ -19,9 +19,14 @@ if (!$_POST) {
 else {
     
     $errores = filtrarErrores();
+    print_r($errores);
+    $fichero = $_FILES['fichero']['tmp_name'];
+    echo "<pre>".$fichero."</pre>";
 
-    $fich_dest = "/Doc";
-    $subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
+  
+ if ($errores){
+    include('../vista/modificar.php');
+ }else{
 
     $reg = [
         'id' => filter_input(INPUT_POST, 'id'),
@@ -41,17 +46,13 @@ else {
         'fechaR' => filter_input(INPUT_POST, 'fechaR'),
         'anotA' => filter_input(INPUT_POST, 'anotA'),
         'anotP' => filter_input(INPUT_POST, 'anotP'),
-        'fichero' =>filter_input(INPUT_POST, 'fichero'),
+        'fichero' =>$fichero,
     ];
-    var_dump($subir_archivo);
+    var_dump($fichero);
     var_dump($reg);
-    
- if ($errores){
-    include('../vista/modificar.php');
- }else{
 
     $tarea=new Tarea();
     $tarea->actualizar($reg);
-    insertarFichero($subir_archivo);
+    insertarFichero($fichero);
 }
 }

@@ -19,11 +19,10 @@ if (!$_POST) {
 else {
     
     $errores = filtrarErrores();
+    print_r($errores);
+    $fichero = $_FILES['fichero']['tmp_name'];
+    echo "<pre>".$fichero."</pre>";
 
-    $fich_dest = "/Doc";
-    $subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
-
-    var_dump($_FILES['fichero']);
     
  if ($errores){
     include('../vista/completarTareaOperario.php');
@@ -36,11 +35,11 @@ else {
             'fechaR' => filter_input(INPUT_POST, 'fechaR'),
             'anotA' => filter_input(INPUT_POST, 'anotA'),
             'anotP' => filter_input(INPUT_POST, 'anotP'),
-            'fichero' => filter_input(INPUT_POST, 'fichero'),
+            'fichero' => $fichero,
         ];
 
     $tarea=new Tarea();
     $tarea->completarTarea($reg);
-    insertarFichero($subir_archivo);
+    insertarFichero($fichero);
 }
 }
