@@ -8,8 +8,9 @@
     font-size:20px;
     ">
 <tr>
-    <td><a href='../vista/listarTareasOperario.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> MENU</button></a></td>
-    <td><a href='tareasPendientesOper.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> TAREAS PENDIENTES</button></a></td>
+   <?php $correo= $_GET["correo"]?>
+    <td><a href='../vista/listarTareasOperario.php?correo=luis@gmail.com'><button class="btn text-left" style="color: #ccffcc; background:green;"> MENU</button></a></td>
+    <td><a href='tareasPendientesOper.php?correo="<?php $correo ?>"'><button class="btn text-left" style="color: #ccffcc; background:green;"> TAREAS PENDIENTES</button></a></td>
     <td><a href="../modelo/cerrar_sesion.php"><button class="btn btn-danger text-left"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>X CERRAR SESION</button></a></td>
 </tr>    
 </table>

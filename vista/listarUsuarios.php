@@ -19,7 +19,7 @@ include('layout/menuA.php');
         <div class="centrar">
 
 <h2>LISTADO DE OPERARIOS:</h2>
-<a style="float:right ;" id="insertarUsuario" href="../controlador/insertarUsuario.php"><input class='btn btn-primary' type="button" name="insertar" value="añadir nuevo operario"></a>
+<a style="float:right ;" id="insertarUsuario" href="../controlador/insertarUsuario.php"><input class="btn btn-success btn-block" type="button" name="insertar" value="añadir nuevo operario"></a>
 <br>
 
     <div class="col-12 col-md-12"> 

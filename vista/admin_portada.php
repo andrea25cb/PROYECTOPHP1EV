@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-<title>ADMIN</title>
+<title>Portada admin</title>
 		
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 <script src="../js/jquery-1.12.4-jquery.min.js"></script>
@@ -54,14 +54,10 @@ include('../vista/layout/menuA.php'); ?>
 					header("location: ../index.php");  
 				}
 
-				if(isset($_SESSION['personal_login']))	
-				{
-					header("location: ../personal/personal_portada.php");	
-				}
 
-				if(isset($_SESSION['usuarios_login']))	
+				if(isset($_SESSION['operario_login']))	
 				{
-					header("location: ../usuarios/usuarios_portada.php");
+					header("location: operario_portada.php");
 				}
 				
 				if(isset($_SESSION['admin_login']))

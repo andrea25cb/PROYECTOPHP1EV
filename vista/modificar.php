@@ -169,7 +169,14 @@ if ($registro) {
         <textarea class="form-control" name="anotA" value="<?= $registro->anotA ?>"><?= $registro->anotA ?>
 </textarea><?= VerError('anotA') ?>
         <p>Operario encargado:
-    
+   <?php
+   $operarios = [
+    "oper1"=>"operario 1",
+    "oper2"=>"operario 2",
+    "oper3"=>"operario 3",
+    "oper4"=>"operario 4",
+];?>
+        
         <select name="operario" value="<?= $registro->operario ?>>
     <?php foreach ($operarios as $value => $desc): ?>
         <option value="<?= $registro->operario ?>"
@@ -188,11 +195,6 @@ if ($registro) {
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupFile01">ADJUNTAR FICHERO</label>
             <input type="file" class="form-control" id="inputGroupFile01"name="fichero" value="<?= $registro->fichero ?>">
-        </div>
-
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupFile01">Fotos del trabajo realizado</label>
-            <input type="file" class="form-control" id="inputGroupFile01" name="foto" value="<?= $registro->foto ?>" accept=".png, image/png">
         </div>
 
     <input type="hidden" name="id" value="<?= $id ?>">

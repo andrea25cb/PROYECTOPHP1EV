@@ -61,8 +61,8 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 								
 							case "operario";
 								$_SESSION["operario_login"]=$correo;				
-								$loginMsg="Operario: Inicio sesión con éxito";		
-								header("refresh:3;vista/operario_portada.php");	
+								$loginMsg="Operario: Inicio sesión con éxito";
+								header("refresh:3;vista/operario_portada.php?correo=" . $_SESSION["operario_login"]);	
 								break;
 								
 							default:

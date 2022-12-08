@@ -1,3 +1,9 @@
+<?php
+/**
+ * VISTA QUE MUESTA LA LISTA DE TAREAS DE UN OPERARIO
+ * 
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,22 +19,22 @@
 include('layout/encabezado.php');
 include('layout/menuO.php'); 
 
-$search_keyword = '';
-	if(!empty($_POST['search']['keyword'])) {
-		$search_keyword = $_POST['search']['keyword'];
-	}
+// $search_keyword = '';
+// 	if(!empty($_POST['search']['keyword'])) {
+// 		$search_keyword = $_POST['search']['keyword'];
+// 	}
 ?>
 <br>
-<div class="row"><div class="col-lg-6"></div>
+<!-- <div class="row"><div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar tarea..."  name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'>
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
       </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+    </div>
+  </div>
+</div> -->
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>

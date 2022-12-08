@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INSERTAR TAREA</title>
-  <link href="estilos.css" rel="stylesheet" >
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   
 </head>
@@ -202,11 +201,7 @@ $operarios = [
              <input type="file" class="form-control" name="fichero" id="inputGroupFile01" value="<?=isset($_POST['fichero']) ? $_POST['fichero']: ''?>">
         </div>
 
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupFile01">Fotos del trabajo realizado</label>
-            <input type="file" class="form-control" id="inputGroupFile01" name="foto" value="<?=isset($_POST['foto']) ? $_POST['foto']: ''?>" accept=".png, image/png">
-        </div>
-     
+
        <input class="btn btn-primary" type="submit" name="enviar" value="ENVIAR">
        <br>
     </form>

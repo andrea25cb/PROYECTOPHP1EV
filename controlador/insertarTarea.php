@@ -3,8 +3,6 @@
 include("../modelo/modTarea.php"); 
 include('filtrarErrores.php');
 
-// $fich_dest = "../Doc";
-// $subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
 
 if (!$_POST) {
     // 1º vez
@@ -12,14 +10,10 @@ if (!$_POST) {
 }
 else {
     $errores = filtrarErrores();
-    
- if ($errores){
-    include('../vista/form_alta.php');
- }else{
-        // if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
-        //     move_uploaded_file($_FILES['fichero']['tmp_name'], $subir_archivo);
-        //     print_r($_FILES);
-        // }
+
+    $fich_dest = "/Doc";
+    $subir_archivo = $fich_dest . basename($_FILES['fichero']['name']);
+
     $reg = [
         'id' => filter_input(INPUT_POST, 'id'),
         'nif' => filter_input(INPUT_POST, 'nif'),
@@ -38,11 +32,19 @@ else {
         'fechaR' => filter_input(INPUT_POST, 'fechaR'),
         'anotA' => filter_input(INPUT_POST, 'anotA'),
         'anotP' => filter_input(INPUT_POST, 'anotP'),
-        'fichero' => $subir_archivo,
-        'foto' => filter_input(INPUT_POST, 'foto'),
+        'fichero' =>filter_input(INPUT_POST, 'fichero'),
     ];
+    var_dump($subir_archivo);
+    var_dump($reg);
+    echo $_FILES['name'];
+
+    
+ if ($errores){
+    include('../vista/form_alta.php');
+ }else{
 
     $tarea=new Tarea();
     $tarea->insertar($reg);
+    insertarFichero($subir_archivo);
     }
 }

@@ -54,6 +54,17 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    function insertarFichero($fichero){
+        if (is_uploaded_file($_FILES['fichero']['tmp_name'])) {
+            move_uploaded_file($_FILES['fichero']['tmp_name'], $fichero);
+        }else{
+            echo "No se ha podido subir el fichero";
+        }
+    }
+    function insertarFoto($foto){
+        
+    }
+
     /**VALIDACIONES:  */
     function filtrarErrores()
     {
