@@ -1,7 +1,10 @@
 <?php 
+ if(!class_exists('Database')){
+
 /**
  * Clase de abstracción de base de datos de 'proyecto1ev'
  */
+
 class Database { 
     
     public $pdo = null;
@@ -10,7 +13,6 @@ class Database {
     private static $user = "root"; 
     private static $pass = "";     
     private static $instance;
-    private static $num_items_by_page;
 
     public function __construct ()  {        
        $this->db = new PDO(self::$dns,self::$user,self::$pass);       
@@ -30,4 +32,4 @@ class Database {
 	}
 } 
 
-?> 
+}
