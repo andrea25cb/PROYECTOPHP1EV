@@ -47,7 +47,6 @@
 <?php
 include('modelo/login.php');
 include('vista/layout/encabezado.php');
-include('controlador/errorLogin.php')
 ?>
 
 <div class="login-form">

@@ -7,9 +7,9 @@
     font-size:20px;
     ">
 <tr>
-   <?php $correo = $_REQUEST["correo"]; ?>
-    <td><a href='../controlador/listarTareasOper.php?correo="<?php $correo ?>"'><button class="btn text-left" style="color: #ccffcc; background:green;"> MENU</button></a></td>
-    <td><a href='tareasPendientesOper.php?correo="<?php $correo ?>"'><button class="btn text-left" style="color: #ccffcc; background:green;"> TAREAS PENDIENTES</button></a></td>
+   
+    <td><a href='../controlador/listarTareasOper.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> MENU</button></a></td>
+    <td><a href='../controlador/tareasPendientesOper.php'><button class="btn text-left" style="color: #ccffcc; background:green;"> TAREAS PENDIENTES</button></a></td>
     <td><a href="../modelo/cerrar_sesion.php"><button class="btn btn-danger text-left">X CERRAR SESION</button></a></td>
 </tr>    
 </table>
