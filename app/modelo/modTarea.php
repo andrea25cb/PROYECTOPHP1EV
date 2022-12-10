@@ -1,4 +1,5 @@
 <?php
+ include('paginacion.php');
  if (!class_exists('Tarea')) {
   /**Esta clase 'Tarea' es parte del modelo de mi proyecto, y dispone de diversos métodos, CRUD, 
          * que afectarán a las tareas */
@@ -84,11 +85,36 @@
         public function listar()
         {
             $cc = Database::getInstance();
-            $sql = "SELECT * FROM tarea ORDER BY fechaR";
+            $sql = "SELECT * FROM tarea";
             $query = $cc->db->prepare($sql);
             $query->execute();
-            $results = $query->fetchAll(PDO::FETCH_OBJ);
-            //Query
+
+           $tamagno_paginas = 3;
+
+            if (isset($_GET['pagina'])) {
+
+                if ($_GET['pagina'] == 1) {
+                    header("Location: listarTareas.php");
+                } else {
+                    $pagina = $_GET['pagina'];
+                }
+            }else{
+                $pagina=1;
+            }
+
+           $empezar_desde = ($pagina - 1) * $tamagno_paginas;
+           $num_filas = $query->rowCount();
+           $total_paginas = ceil($num_filas / $tamagno_paginas);
+
+           echo "Núm registros de la consulta: " . $num_filas;
+           echo "<br> Mostramos: ".$tamagno_paginas." registros por página";
+           echo "<br> Mostrando la página: " . $pagina . " de " . $total_paginas." <br><br>";
+           
+
+           $sql_limite= "SELECT * FROM tarea ORDER BY fechaR LIMIT $empezar_desde,$tamagno_paginas";
+           $query = $cc->db->prepare($sql_limite);
+           $query->execute();
+           $results = $query->fetchAll(PDO::FETCH_OBJ);
 
             if ($query->rowCount() > 0) {
                 foreach ($results as $registro) {
@@ -111,6 +137,12 @@
            </tr>";
                 }
             }
+            //paginacion:
+
+            for($i=1;$i<=$total_paginas;$i++){
+                echo "<a href='?pagina= ".$i."'> ".$i."</a>";
+            }
+
         }
 
         /**Listar todas las tareas del usuario;  pendientes, realizadas y canceladas*/
