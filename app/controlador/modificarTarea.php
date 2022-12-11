@@ -1,7 +1,11 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador de la opcion 'modificar' que permite editar los datos de una tarea*/
 include("../modelo/modTarea.php"); 
-include('filtrarErrores.php');
+include('../modelo/filtrarErrores.php');
 
 $id=$_GET['id']; 
     /**Para coger los valores y mostrarlos en los inputs: */
@@ -17,7 +21,7 @@ if (!$_POST) {
     include('../vista/modificar.php');
 }
 else {
-    $errores = filtrarErrores();
+    $errores = filtrarErroresModificar();
 
     $fichero = $_FILES['fichero']['tmp_name'];
   

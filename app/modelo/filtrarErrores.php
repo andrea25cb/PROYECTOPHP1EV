@@ -1,10 +1,19 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite filtrar los posibles errores de un formulario de alta*/
 $errores=[];
 
 if (!defined('FILTRAR_ERRORES')) {
     define('FILTRAR_ERRORES', 1);
 
+    /**
+     * @param mixed $tlf
+     * 
+     * @return [type]
+     */
     function validarTelefono($tlf)
     {
         $a = "^[0-9]{3}[0-9]{3}[0-9]{3}$";
@@ -15,6 +24,11 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    /**
+     * @param mixed $campo
+     * 
+     * @return [type]
+     */
     function VerError($campo)
     {
         global $errores;
@@ -25,6 +39,11 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    /**
+     * @param mixed $dni
+     * 
+     * @return [type]
+     */
     function validarNie($dni)
     {
         $dnisL = substr($dni, 0, -1);
@@ -43,6 +62,11 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    /**
+     * @param mixed $fecha
+     * 
+     * @return [type]
+     */
     function validarFecha($fecha)
     {
         $fecha = new DateTime($fecha);
@@ -54,6 +78,11 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    /**
+     * @param mixed $nombre_archivo
+     * 
+     * @return [type]
+     */
     function insertarFichero($nombre_archivo)
     {
         $fich_dest ="../files/";
@@ -65,6 +94,9 @@ if (!defined('FILTRAR_ERRORES')) {
         }
     }
 
+    /**
+     * @return [type]
+     */
     function filtrarErroresCompletar()
     {
         $errores = [];
@@ -80,7 +112,58 @@ if (!defined('FILTRAR_ERRORES')) {
     }
 
     /**VALIDACIONES:  */
+    /**
+     * @return [type]
+     */
     function filtrarErrores()
+    {
+        $errores = [];
+        $nif = filter_input(INPUT_POST, 'nif');
+        $tlf = filter_input(INPUT_POST, 'tlf');
+        $fechaR = filter_input(INPUT_POST, 'fechaR');
+        $correo = filter_input(INPUT_POST, 'correo');
+
+        if (validarNie($nif) == false) {
+            $errores['nif'] = 'NIF erróneo';
+        }
+        if (filter_input(INPUT_POST, 'nombre') == '') {
+            $errores['nombre'] = 'No puede estar vacío';
+        }
+        if (filter_input(INPUT_POST, 'apellidos') == '') {
+            $errores['apellidos'] = 'No puede estar vacío';
+        }
+        if (filter_input(INPUT_POST, 'descripcion') == '') {
+            $errores['descripcion'] = 'No puede estar vacío';
+        }
+        if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $errores['correo'] = 'Dirección de correo no válida';
+        }
+
+        if (filter_input(INPUT_POST, 'cp') < 5) {
+            $errores['cp'] = 'CP debe tener 5 caracteres';
+        }
+        if (filter_input(INPUT_POST, 'estadoTarea') == '') {
+            $errores['estadoTarea'] = 'Debe seleccionar un estado de la tarea';
+        }
+
+        if (validarTelefono($tlf) == false) {
+            $errores['tlf'] = 'Número inválido';
+        }
+
+        if(validarFecha($fechaR)==false) {
+            $errores['fechaR']='Debe ser posterior a la fecha de creación';
+           }
+
+        if (filter_input(INPUT_POST, 'provincia') == "") {
+            $errores['provincia'] = 'Debe seleccionar una provincia';
+        }
+        return $errores;
+    }
+
+    /**
+     * @return [type]
+     */
+    function filtrarErroresModificar()
     {
         $errores = [];
         $nif = filter_input(INPUT_POST, 'nif');

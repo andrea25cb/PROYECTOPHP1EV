@@ -12,7 +12,8 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-    <?php include('layout/encabezado.php');
+    <?php 
+    include('layout/encabezado.php');
     include('layout/menuA.php');
  ?>
  <div class="container">

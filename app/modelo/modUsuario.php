@@ -1,12 +1,26 @@
 <?php
+/** 
+* @author andrea cordon
+*/
 
 include(__DIR__ . '/database.php');
+/**
+ * [Description Usuario]
+ */
 class Usuario
 {
 /**Esta clase 'Usuario' es parte del modelo de mi proyecto, y dispone de diversos métodos, CRUD, 
  * que afectarán a los usuarios, tanto a administradores como a operarios */
 
  /**Insertar datos para la creación de un nuevo usuario */
+    /**
+     * @param mixed $nombre
+     * @param mixed $correo
+     * @param mixed $contra
+     * @param mixed $nivel
+     * 
+     * @return [type]
+     */
     public function insertarUsuario($nombre, $correo, $contra, $nivel)
     {
         $cc = Database::getInstance();
@@ -26,6 +40,9 @@ class Usuario
     }
 
     /**Listar todos los usuarios*/
+    /**
+     * @return void [type]
+     */
     public function listarUsuarios()
     {
         $cc = Database::getInstance();
@@ -52,6 +69,13 @@ class Usuario
     }
     
  /**Actualizar datos de un usuario con un correo concreto*/
+    /**
+     * @param mixed $nombre
+     * @param mixed $correo
+     * @param mixed $contra
+     * 
+     * @return [type]
+     */
     public function editarUsuario($nombre,$correo,$contra) 
     {                 
         $cc = Database::getInstance(); 
@@ -67,6 +91,11 @@ class Usuario
  } 
 
 /**Borrar usuario con un correo concreto*/
+    /**
+     * @param mixed $correo
+     * 
+     * @return [type]
+     */
     public function borrarUsuario($correo)
     {
         $cc = Database::getInstance();

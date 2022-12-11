@@ -1,6 +1,9 @@
 <?php
-session_start();
+/** 
+* @author andrea cordon
+*/
 
+session_start();
 
 //Cerrar Session
 $_SESSION["correo"] = "";

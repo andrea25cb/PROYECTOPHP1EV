@@ -1,4 +1,8 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite eliminar una tarea con un id concreto que se pasa por parámetros */
 include("../modelo/modTarea.php"); 
 

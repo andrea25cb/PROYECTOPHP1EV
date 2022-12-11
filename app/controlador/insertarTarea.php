@@ -1,7 +1,11 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite al admin insertar una nueva tarea, cogiendo los datos de un formulario de alta */
 include("../modelo/modTarea.php"); 
-include('filtrarErrores.php');
+include('../modelo/filtrarErrores.php');
 
 if (!$_POST) {
     // 1º vez

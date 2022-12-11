@@ -1,4 +1,8 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite eliminar un usuario con un correo concreto que se pasa por parámetros */
 include("../modelo/modUsuario.php"); 
 

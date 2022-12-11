@@ -1,4 +1,8 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que coge los datos de los inputs del login, para luego comprobarlos */
 require_once("../modelo/modLzogin.php");
 if ($_POST) {

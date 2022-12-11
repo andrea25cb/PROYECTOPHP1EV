@@ -1,7 +1,11 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite al admin insertar un nuevo usuario, cogiendo los datos de un formulario */
 include("../modelo/modUsuario.php"); 
-include('filtrarErroresUsuario.php');
+include('../modelo/filtrarErroresUsuario.php');
 
 if (!$_POST) {
      // 1º vez

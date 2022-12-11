@@ -1,20 +1,28 @@
 <?php
 include(__DIR__ . '/database.php');
+
+/** 
+* @author andrea cordon
+*/
+
 // require_once "Clases.php";
 // $util = new Util();
-/** Su función es comprobar el login de la primera pantalla/index ('login'), 
+
+/** 
+ * Su función es comprobar el login de la primera pantalla/index ('login'), 
  * diferenciando si el usuario que ingresa es administrador u operario
- * mostrando los mensajes que convengan según el error cometido*/
+ * mostrando los mensajes que convengan según el error cometido
+ * */
 
 session_start();
 if(isset($_SESSION["admin_login"]) && isset($_SESSION["hora_conexion"]))	//Condicion admin
 {
-	header("location: vista/admin_portada.php");
+	header("location: vista/listarTareas.php");
 	exit;
 }
 if(isset($_SESSION["operario_login"]) && isset($_SESSION["hora_conexion"]))	//Condicion operario
 {
-	header("location: vista/operario_portada.php");
+	header("location: vista/listarTareasOperario.php");
 	exit;
 }
 
@@ -32,11 +40,8 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 	}
 	else if($correo AND $contra) //y si no están vacios:
 	{
-		$cc = Database::getInstance();
-		$sqlLogin = $cc->db->prepare(sprintf("INSERT INTO login (usuario,hora) VALUES ('$correo','$hora')"));
-						$sqlLogin->execute();
 		try{
-			
+			$cc = Database::getInstance();
 			$sql=$cc->db->prepare("SELECT * FROM usuario
 										WHERE
 										correo=:correo AND contra=:contra"); 
@@ -63,19 +68,18 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 							case "admin":
 								$_SESSION["admin_login"]=$correo;	
 								$_SESSION['hora_conexion'] = date('H:i:s');			
-								header("location: vista/admin_portada.php");	
+								header("location: vista/listarTareas.php");
 								break;
 								
 							case "operario";
 								$_SESSION["operario_login"]=$correo;	
 								$_SESSION['hora_conexion'] = date('H:i:s');	
-								header("location: vista/operario_portada.php");	
+								header("location: vista/listarTareasOperario.php");
 								break;
 								
 							default:
 								$errorMsg[]="correo electrónico o contraseña incorrectos";
 						}
-
 						
 							                           
 						//  // RECUERDAME 
@@ -129,7 +133,7 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 		$errorMsg[]="correo electrónico o contraseña incorrectos";
 	}
 
-/**Muestra mensaje de error*/?>
+/** Muestra mensaje de error */ ?>
 <div class="wrapper">
 	<div class="container">
 		<div class="col-lg-12">
@@ -147,17 +151,3 @@ if(isset($_REQUEST['btn_login']))	//si le doy al boton login:
 			}
 		}
 }
-
-// function horaLogin($correo){
-// 	$cc = Database::getInstance();
-// 	$sql = $cc->db->prepare("SELECT hora FROM login WHERE usuario = '$correo");
-// 	$sql->execute();
-// 	$results = $sql->fetchAll(PDO::FETCH_OBJ);
-
-// 	if ($sql->rowCount() > 0) {
-// 		foreach ($results as $registro) {
-// 			echo "Hora de login" . $registro->hora . ".";
-// 		}
-// 	}
-// }
-

@@ -1,7 +1,11 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite editar los datos de un usuario cogiendo sus valores de un formulario */
 require_once("../modelo/modUsuario.php"); 
-include('filtrarErroresUsuario.php');
+include('../modelo/filtrarErroresUsuario.php');
 
 $correo=$_GET['correo']; 
     /**Para coger los valores y mostrarlos en los inputs: */

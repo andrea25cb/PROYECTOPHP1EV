@@ -1,10 +1,19 @@
 <?php
+/** 
+* @author andrea cordon
+*/
+
 /**Controlador que permite filtrar los posibles errores de un formulario de alta*/
 $errores=[];
 
 if (!defined('FILTRAR_ERRORES')) {
     define('FILTRAR_ERRORES', 1);
 
+    /**
+     * @param mixed $campo
+     * 
+     * @return [type]
+     */
     function VerError($campo)
     {
         global $errores;
@@ -16,6 +25,9 @@ if (!defined('FILTRAR_ERRORES')) {
     }
 
     /**VALIDACIONES:  */
+    /**
+     * @return [type]
+     */
     function filtrarErrores()
     {
         $errores = [];

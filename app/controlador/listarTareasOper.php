@@ -1,4 +1,7 @@
 <?php
+/** 
+* @author andrea cordon
+*/
 
 require_once("../modelo/modTarea.php");
 include_once('../modelo/session.php');

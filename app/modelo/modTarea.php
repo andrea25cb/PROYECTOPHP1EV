@@ -8,6 +8,9 @@
      * */
 
     include(__DIR__ . '/database.php');
+/**
+ * [Description Tarea]
+ */
     class Tarea
     {
         /**Buscar tareas a través de un input buscador */
@@ -58,6 +61,9 @@
         //     $resultados = $pdo_statement->fetchAll();
         // }
         /**Listar todas las tareas, en todos los estados. Solo las ve el admin*/
+        /**
+         * @return void [type]
+         */
         public function listar()
         {
             $cc = Database::getInstance();
@@ -122,6 +128,11 @@
         }
 
         /**Listar todas las tareas del usuario;  pendientes, realizadas y canceladas*/
+        /**
+         * @param mixed $correo
+         * 
+         * @return void [type]
+         */
         public function tareasOperario($correo)
         {
             $cc = Database::getInstance();
@@ -179,6 +190,9 @@
         }
 
         /**TODAS LAS TAREAS PENDIENTES POR HACER, solo las verá el admin*/
+        /**
+         * @return void [type]
+         */
         public function listarPendientes()
         {
             $cc = Database::getInstance();
@@ -213,6 +227,11 @@
         }
 
         /**Lista de tareas pendientes de un operario con un correo concreto, cuyo valor se cogerá en el login */
+        /**
+         * @param mixed $correo
+         * 
+         * @return void [type]
+         */
         public function listarPendientesOper($correo)
         {
             $cc = Database::getInstance();
@@ -245,6 +264,11 @@
         }
 
         /**Insertar nueva tarea */
+        /**
+         * @param mixed $reg
+         * 
+         * @return [type]
+         */
         public function insertar($reg)
         {
             $cc = Database::getInstance();
@@ -257,6 +281,11 @@
         }
 
         /**Ver detalles de una tarea con un id concreto*/
+        /**
+         * @param mixed $id
+         * 
+         * @return void [type]
+         */
         public function verDetalles($id)
         {
             $cc = Database::getInstance();
@@ -292,6 +321,11 @@
         }
 
         /**Actualizar datos de una tarea con un id concreto*/
+        /**
+         * @param mixed $reg
+         * 
+         * @return [type]
+         */
         public function actualizar($reg)
         {
             $cc = Database::getInstance();
@@ -306,6 +340,11 @@
         }
 
         /**Completar tarea de un operario*/
+        /**
+         * @param mixed $reg
+         * 
+         * @return [type]
+         */
         public function completarTarea($reg)
         {
             $cc = Database::getInstance();
