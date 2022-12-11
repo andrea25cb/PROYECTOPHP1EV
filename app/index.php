@@ -1,8 +1,10 @@
-<?php /** 
- * @author andrea cordon
+<?php /**
+* @file index.php
+* @Author andrea cordon
+* @date 11/12/2022
+* @brief Queue implementation
 */
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
