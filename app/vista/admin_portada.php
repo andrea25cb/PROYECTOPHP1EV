@@ -47,8 +47,6 @@ include('../vista/layout/menuA.php'); ?>
 				
 				<h3>
 				<?php
-				session_start();
-
 				if(!isset($_SESSION['admin_login']))	
 				{
 					header("location: ../index.php");  

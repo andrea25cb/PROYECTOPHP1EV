@@ -12,7 +12,10 @@
 <body><?php
 include('layout/encabezado.php'); 
 include('layout/menuO.php'); 
-?> <div class="container">
+
+?> 
+
+<div class="container">
 <div class="centrar"><br>
 <h2>LISTADO DE TAREAS PENDIENTES:</h2>
     <div class="col-12 col-md-12"> 

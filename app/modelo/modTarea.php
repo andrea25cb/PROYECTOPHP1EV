@@ -1,86 +1,62 @@
 <?php
- include('paginacion.php');
  if (!class_exists('Tarea')) {
   /**Esta clase 'Tarea' es parte del modelo de mi proyecto, y dispone de diversos métodos, CRUD, 
          * que afectarán a las tareas */
 
-    /**@author andrea*/
+    /**
+     * @author andrea
+     * */
 
     include(__DIR__ . '/database.php');
     class Tarea
     {
-      
-        /**
-         * Paginación de la lista de tareas
-         * @return void
-         */
-        public function paginacion()
-        {
-            $cc = Database::getInstance();
-            $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
-
-            $regpagina = 5;
-
-            $inicio = ($pagina > 1) ? (($pagina * $regpagina) - $regpagina) : 0;
-
-            $registros = $cc->db->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM tarea LIMIT $inicio,$regpagina");
-
-            $registros->execute();
-            $registros = $registros->fetchAll();
-
-            $totalregistros = $cc->db->query("SELECT FOUND_ROWS() as total");
-            $totalregistros = $totalregistros->fetch()['total'];
-
-            $numeropaginas = ceil($totalregistros / $regpagina);
-        }
-
         /**Buscar tareas a través de un input buscador */
-        public function buscarTareas($keyword)
-        {
-            $cc = Database::getInstance();
-            $search_keyword = '';
-            if (!empty($_POST['search']['keyword'])) {
-                $search_keyword = $_POST['search']['keyword'];
-            }
-            $sql = 'SELECT * FROM tarea WHERE id LIKE :keyword OR nif LIKE :keyword OR nombre LIKE :keyword OR apellidos LIKE :keyword OR tlf LIKE :keyword
-        OR descripcion LIKE :keyword OR correo LIKE :keyword OR direccion LIKE :keyword OR poblacion OR provincia LIKE :keyword OR estadoTarea LIKE :keyword
-        OR fechaC LIKE :keyword OR anotA LIKE :keyword OR anotP LIKE :keyword ORDER BY id DESC ';
+        // public function buscarTareas($keyword)
+        // {
+        //     $cc = Database::getInstance();
+        //     $search_keyword = '';
+        //     if (!empty($_POST['search']['keyword'])) {
+        //         $search_keyword = $_POST['search']['keyword'];
+        //     }
+        //     $sql = 'SELECT * FROM tarea WHERE id LIKE :keyword OR nif LIKE :keyword OR nombre LIKE :keyword OR apellidos LIKE :keyword OR tlf LIKE :keyword
+        // OR descripcion LIKE :keyword OR correo LIKE :keyword OR direccion LIKE :keyword OR poblacion OR provincia LIKE :keyword OR estadoTarea LIKE :keyword
+        // OR fechaC LIKE :keyword OR anotA LIKE :keyword OR anotP LIKE :keyword ORDER BY id DESC ';
 
-            /* Pagination Code starts */
-            $per_page_html = '';
-            $page = 1;
-            $start = 0;
-            if (!empty($_POST["page"])) {
-                $page = $_POST["page"];
-                $start = ($page - 1) * NRO_REGISTROS;
-            }
-            $limit = " limit " . $start . "," . NRO_REGISTROS;
-            $pagination_statement = $cc->db->prepare($sql);
-            $pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-            $pagination_statement->execute();
+        //     /* Pagination Code starts */
+        //     $per_page_html = '';
+        //     $page = 1;
+        //     $start = 0;
+        //     if (!empty($_POST["page"])) {
+        //         $page = $_POST["page"];
+        //         $start = ($page - 1) * NRO_REGISTROS;
+        //     }
+        //     $limit = " limit " . $start . "," . NRO_REGISTROS;
+        //     $pagination_statement = $cc->db->prepare($sql);
+        //     $pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
+        //     $pagination_statement->execute();
 
-            $row_count = $pagination_statement->rowCount();
-            if (!empty($row_count)) {
-                $per_page_html .= "<div style='text-align:center;margin:20px 0px;'>";
-                $page_count = ceil($row_count / NRO_REGISTROS);
-                if ($page_count > 1) {
-                    for ($i = 1; $i <= $page_count; $i++) {
-                        if ($i == $page) {
-                            $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page current" />';
-                        } else {
-                            $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page" />';
-                        }
-                    }
-                }
-                $per_page_html .= "</div>";
-            }
+        //     $row_count = $pagination_statement->rowCount();
+        //     if (!empty($row_count)) {
+        //         $per_page_html .= "<div style='text-align:center;margin:20px 0px;'>";
+        //         $page_count = ceil($row_count / NRO_REGISTROS);
+        //         if ($page_count > 1) {
+        //             for ($i = 1; $i <= $page_count; $i++) {
+        //                 if ($i == $page) {
+        //                     $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page current" />';
+        //                 } else {
+        //                     $per_page_html .= '<input type="submit" name="page" value="' . $i . '" class="btn-page" />';
+        //                 }
+        //             }
+        //         }
+        //         $per_page_html .= "</div>";
+        //     }
 
-            $query = $sql . $limit;
-            $pdo_statement = $cc->db->prepare($query);
-            $pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-            $pdo_statement->execute();
-            $resultados = $pdo_statement->fetchAll();
-        }
+        //     $query = $sql . $limit;
+        //     $pdo_statement = $cc->db->prepare($query);
+        //     $pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
+        //     $pdo_statement->execute();
+        //     $resultados = $pdo_statement->fetchAll();
+        // }
         /**Listar todas las tareas, en todos los estados. Solo las ve el admin*/
         public function listar()
         {
@@ -106,10 +82,9 @@
            $num_filas = $query->rowCount();
            $total_paginas = ceil($num_filas / $tamagno_paginas);
 
-           echo "Núm registros de la consulta: " . $num_filas;
-           echo "<br> Mostramos: ".$tamagno_paginas." registros por página";
+        //    echo "Núm registros de la consulta: " . $num_filas;
+        //    echo "<br> Mostramos: ".$tamagno_paginas." registros por página";
            echo "<br> Mostrando la página: " . $pagina . " de " . $total_paginas." <br><br>";
-           
 
            $sql_limite= "SELECT * FROM tarea ORDER BY fechaR LIMIT $empezar_desde,$tamagno_paginas";
            $query = $cc->db->prepare($sql_limite);
@@ -140,7 +115,8 @@
             //paginacion:
 
             for($i=1;$i<=$total_paginas;$i++){
-                echo "<a href='?pagina= ".$i."'> ".$i."</a>";
+                echo "<a style='background-color:lightgreen;margin:2px;border:2px solid green;
+                color:green;font-weight:bold;text-decoration: none;' href='?pagina= ".$i."'> ".$i." </a>";
             }
 
         }
@@ -149,7 +125,29 @@
         public function tareasOperario($correo)
         {
             $cc = Database::getInstance();
-            $sql = "SELECT * FROM tarea WHERE correo ='$correo' ORDER BY fechaR";
+            $sql = "SELECT * FROM tarea WHERE correo ='$correo'";
+            $query = $cc->db->prepare($sql);
+            $query->execute();
+
+           $tamagno_paginas = 3;
+
+            if (isset($_GET['pagina'])) {
+
+                if ($_GET['pagina'] == 1) {
+                    header("Location: listarTareasOperario.php");
+                } else {
+                    $pagina = $_GET['pagina'];
+                }
+            }else{
+                $pagina=1;
+            }
+
+           $empezar_desde = ($pagina - 1) * $tamagno_paginas;
+           $num_filas = $query->rowCount();
+           $total_paginas = ceil($num_filas / $tamagno_paginas);
+           echo "<br> Mostrando la página: " . $pagina . " de " . $total_paginas." <br><br>";
+
+            $sql = "SELECT * FROM tarea WHERE correo ='$correo' ORDER BY fechaR LIMIT $empezar_desde,$tamagno_paginas";
             $query = $cc->db->prepare($sql);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -172,6 +170,11 @@
            </tr>";  
          
                 }
+            }
+
+            for($i=1;$i<=$total_paginas;$i++){
+                echo "<a style='background-color:lightgreen;margin:2px;border:2px solid green;
+                color:green;font-weight:bold;text-decoration: none;' href='?pagina= ".$i."'> ".$i." </a>";
             }
         }
 

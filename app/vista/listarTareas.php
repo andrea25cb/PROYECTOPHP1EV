@@ -23,7 +23,7 @@
     <?php 
 include('layout/encabezado.php');
 include('layout/menuA.php');
-// include('../controlador/buscarTareas.php');
+
     /**BUSCADOR DE TAREAS: */
 ?>
 
@@ -39,7 +39,6 @@ include('layout/menuA.php');
     </div>
   </div>
 </div> -->
-
  <div class="container">
         <div class="centrar">
 <h2>LISTADO DE TAREAS:</h2>

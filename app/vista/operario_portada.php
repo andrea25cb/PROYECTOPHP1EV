@@ -49,8 +49,6 @@ include('../vista/layout/menuO.php'); ?>
 				<h3>
 				<?php
 				
-				session_start();
-
 				if(!isset($_SESSION['operario_login']))	
 				{
 					header("location: ../index.php");
